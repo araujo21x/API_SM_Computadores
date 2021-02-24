@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import userRouter from './modules/user/index';
+import partsRouter from './modules/parts';
 
 class App {
   public app: express.Application;
@@ -23,6 +24,7 @@ class App {
 
   private routes (): void {
     this.app.use(userRouter);
+    this.app.use(partsRouter);
   }
 }
 
