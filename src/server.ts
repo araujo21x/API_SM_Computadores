@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import compression from 'compression';
 import userRouter from './modules/user/index';
 
 class App {
@@ -17,6 +18,7 @@ class App {
     this.app.use(express.json());
     this.app.use(cors());
     this.app.use(helmet());
+    this.app.use(compression());
   }
 
   private routes (): void {
