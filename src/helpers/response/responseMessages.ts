@@ -10,9 +10,31 @@ export const ResponseMessages: any = {
     es: 'No encontrado.'
   },
 
-  //
+  // Parts
   '001-001': {
-    ptBR: 'Não tem user',
+    ptBR: 'Tipo de peça não informado.',
+    en: '',
+    es: ''
+  },
+  '001-002': {
+    ptBR: 'Formado do tipo de peça, precisa ser uma string.',
+    en: '',
+    es: ''
+  },
+  '001-003': {
+    ptBR: 'Tipo de peça não cadastrado.',
+    en: '',
+    es: ''
+  },
+
+  // Grids
+  '002-001': {
+    ptBR: 'Nescessário informar um ID.',
+    en: '',
+    es: ''
+  },
+  '002-002': {
+    ptBR: 'Placa-mãe não cadastrado.',
     en: '',
     es: ''
   }
