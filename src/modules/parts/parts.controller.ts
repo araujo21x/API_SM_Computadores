@@ -3,9 +3,9 @@ import responseError from '../../helpers/response/responseError';
 import repository from './parts.repository';
 
 class PartsController {
-  public async showPartsByType (req: Request, res: Response): Promise<Response> {
+  public async indexPartsByType (req: Request, res: Response): Promise<Response> {
     try {
-      return await repository.showPartsByType(req, res);
+      return await repository.indexPartsByType(req, res);
     } catch (err) {
       return responseError(res, err.message);
     }

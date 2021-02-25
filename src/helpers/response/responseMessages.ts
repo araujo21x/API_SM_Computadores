@@ -25,6 +25,18 @@ export const ResponseMessages: any = {
     ptBR: 'Tipo de peça não cadastrado.',
     en: '',
     es: ''
+  },
+
+  // Grids
+  '002-001': {
+    ptBR: 'Nescessário informar um ID.',
+    en: '',
+    es: ''
+  },
+  '002-002': {
+    ptBR: 'Placa-mãe não cadastrado.',
+    en: '',
+    es: ''
   }
 }
 ;

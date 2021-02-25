@@ -4,11 +4,11 @@ import helper from './parts.helper';
 import typesValid from '../../helpers/typePieceIsValid';
 
 class PartsRepository {
-  public async showPartsByType (req: Request, res: Response): Promise<Response> {
-    return res.jsonp(await this.showByType(req));
+  public async indexPartsByType (req: Request, res: Response): Promise<Response> {
+    return res.jsonp(await this.indexByType(req));
   }
 
-  private async showByType (req: Request): Promise<any> {
+  private async indexByType (req: Request): Promise<any> {
     const { type } = req.query;
 
     if (!type) throw new Error(ResponseCode.E_001_001);

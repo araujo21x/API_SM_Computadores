@@ -3,6 +3,6 @@ import PartsController from './parts.controller';
 const router = Router();
 
 router.route('/v1/piece')
-  .get(PartsController.showPartsByType);
+  .get(PartsController.indexPartsByType);
 
 export default router;
