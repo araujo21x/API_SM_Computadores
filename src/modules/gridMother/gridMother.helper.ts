@@ -51,7 +51,7 @@ class GridMotherHelper {
         case 'm2':
           answer.m2 = { gridColumn: element.gridColumn, gridRow: element.gridRow };
           break;
-        case 'pcieExpress1':
+        case 'pciExpress1':
           answer.pciExpress1 = { gridColumn: element.gridColumn, gridRow: element.gridRow };
           break;
         case 'pciExpress1Docked':

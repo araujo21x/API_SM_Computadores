@@ -57,7 +57,7 @@ class PartsHelper {
 
         parts = parts.map((element: M2) => this.m2Response(element));
         break;
-      case 'pcieExpress':
+      case 'pciExpress':
         parts = await getRepository(Pcie).createQueryBuilder('pcie')
           .getMany();
 
@@ -114,6 +114,7 @@ class PartsHelper {
 
     newCpu.baseClockSpeed = Number(cpu.baseClockSpeed);
     newCpu.maximumBoostSpeed = Number(cpu.maximumBoostSpeed);
+    newCpu.memorySizeSupport = Number(cpu.memorySizeSupport);
     newCpu.memorySupportFrequency = cpu.cpuFrequency.map(element => {
       return element.frequency;
     });

@@ -6,7 +6,7 @@ export default (type: string): boolean => {
     'ram',
     'rom',
     'm2',
-    'pcieExpress',
+    'pciExpress',
     'powerSupply',
     'recorder'
   ];
