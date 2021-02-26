@@ -1,26 +1,39 @@
 import { Request } from 'express';
 import pdf from 'html-pdf';
 import path from 'path';
-import fs from 'fs';
+import ejs from 'ejs';
 
+import { ResponseCode } from '../../helpers/response/responseCode';
 import generateName from '../../helpers/generateNames';
 
 class FinishHelper {
-  public async cratePDF (req: Request): Promise<string> {
-    const dir: string = path.resolve(__dirname,
-      '..', '..', 'tmp', 'pdf', `${generateName()}.pdf`
-    );
+  public cratePDF (req: Request): Promise<string> {
+    return new Promise((resolve: any, reject: any) => {
+      const dir: string = path.resolve(__dirname,
+        '..', '..', 'tmp', 'pdf', `${generateName()}.pdf`
+      );
 
-    pdf.create(JSON.stringify(req.body), {})
-      .toFile(`${dir}`, (err) => {
-        if (err) throw new Error();
+      this.createTemplate(req.body).then((data:string) => {
+        pdf.create(data, {})
+          .toFile(`${dir}`, (err) => {
+            if (err) reject(new Error(ResponseCode.E_003_001));
+            resolve(dir);
+          });
       });
+    });
+  }
 
-    setTimeout(() => {
-      fs.unlinkSync(dir);
-    }, 8000);
-
-    return dir;
+  private createTemplate (parts: any): Promise<string> {
+    return new Promise<string>((resolve: any, reject: any) => {
+      ejs.renderFile(
+        path.resolve(__dirname, '..', '..', '..', 'template', 'templateFinish.ejs'),
+        { parts: parts },
+        (err, data) => {
+          if (err) reject(new Error(ResponseCode.E_003_002));
+          resolve(data);
+        }
+      );
+    });
   }
 }
 
