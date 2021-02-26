@@ -37,6 +37,16 @@ export const ResponseMessages: any = {
     ptBR: 'Placa-mãe não cadastrado.',
     en: '',
     es: ''
+  },
+  // finish
+  '003-001': {
+    ptBR: 'Erro ao construir PDF.',
+    en: '',
+    es: ''
+  },
+  '003-002': {
+    ptBR: 'Erro ao criar template.',
+    en: '',
+    es: ''
   }
-}
-;
+};
