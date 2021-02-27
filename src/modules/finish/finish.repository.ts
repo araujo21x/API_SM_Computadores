@@ -12,13 +12,14 @@ class FinishRepository {
   }
 
   private async sendPDV (req: Request): Promise<string> {
-    let dir:string = '';
+    helper.isValidParts(req.body);
 
     try {
-      dir = await helper.cratePDF(req);
+      const dir:string = await helper.cratePDF(req);
+
       setTimeout(() => {
         fs.unlinkSync(dir);
-      }, 5000);
+      }, 8000);
 
       return dir;
     } catch (err) {

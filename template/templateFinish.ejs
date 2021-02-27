@@ -360,11 +360,10 @@
 
     <% } %>
 
-    <% if (parts.powerSupply) { %>
-        <section class="titleBackground">
+    <section class="titleBackground">
             <h1>Fonte de energia<h1>
-        </section>
-        <ul>
+    </section>
+    <ul>
             <li> 
                 voltagem = 
                 <%= parts.powerSupply.voltage %>;
@@ -374,9 +373,7 @@
                 Capacidade de saída = 
                 <%= parts.powerSupply.wattage %> W;
             </li>
-        </ul>
-
-    <% } %>
+    </ul>
 </body>
 
 </html>

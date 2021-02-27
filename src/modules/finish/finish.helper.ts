@@ -4,6 +4,7 @@ import path from 'path';
 import ejs from 'ejs';
 
 import generateName from '../../helpers/generateNames';
+import { ResponseCode } from '../../helpers/response/responseCode';
 
 class FinishHelper {
   public cratePDF (req: Request): Promise<string> {
@@ -22,6 +23,14 @@ class FinishHelper {
         reject(err);
       });
     });
+  }
+
+  public isValidParts (parts: any): void {
+    if (!parts.motherBoard) throw new Error(ResponseCode.E_003_003);
+    if (!parts.cpu) throw new Error(ResponseCode.E_003_004);
+    if (!parts.cooler) throw new Error(ResponseCode.E_003_005);
+    if (parts.ram.length === 0) throw new Error(ResponseCode.E_003_006);
+    if (!parts.powerSupply) throw new Error(ResponseCode.E_003_007);
   }
 
   private createTemplate (parts: any): Promise<string> {
