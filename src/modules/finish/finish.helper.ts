@@ -3,7 +3,6 @@ import pdf from 'html-pdf';
 import path from 'path';
 import ejs from 'ejs';
 
-import { ResponseCode } from '../../helpers/response/responseCode';
 import generateName from '../../helpers/generateNames';
 
 class FinishHelper {
@@ -13,12 +12,14 @@ class FinishHelper {
         '..', '..', 'tmp', 'pdf', `${generateName()}.pdf`
       );
 
-      this.createTemplate(req.body).then((data:string) => {
+      this.createTemplate(req.body).then((data: string) => {
         pdf.create(data, {})
           .toFile(`${dir}`, (err) => {
-            if (err) reject(new Error(ResponseCode.E_003_001));
+            if (err) reject(new Error('E_003_001'));
             resolve(dir);
           });
+      }).catch(err => {
+        reject(err);
       });
     });
   }
@@ -29,7 +30,7 @@ class FinishHelper {
         path.resolve(__dirname, '..', '..', '..', 'template', 'templateFinish.ejs'),
         { parts: parts },
         (err, data) => {
-          if (err) reject(new Error(ResponseCode.E_003_002));
+          if (err) reject(new Error('E_003_002'));
           resolve(data);
         }
       );
