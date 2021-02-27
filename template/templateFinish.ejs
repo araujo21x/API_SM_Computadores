@@ -1,16 +1,382 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-        table {
-            border-collapse: collapse;
+
+<head>
+    <style>
+        body {
+            margin-left: 0;
         }
-        table, th, td {
-            border: 1px solid black;
+
+        .titleBackground {
+            background-color: #62B0CB;
+            width: 55%;
+            height: 1.5em;
+            border-radius: 0px 0px 5em 0px;
+            align-items: center;
+            justify-content: end;
+            box-shadow: 0 4px 2px 2px #919191;
+            margin-bottom: 2%;
         }
-        </style>
-    </head>
-    <body>
-            name: <%= parts.name %>
-    </body>
+
+        h1 {
+            font-size: 1.2em;
+            margin-left: 10%;
+            font-family: 'Mulish', sans-serif;
+            font-weight: bold;
+            color: white;
+        }
+
+        li {
+            list-style: none;
+            color: black;
+            font-family: 'Mulish', sans-serif;
+        }
+
+        li::before {
+            content: "\2699";
+            color: #62B0CB;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="titleBackground">
+        <h1>Informações Gerais<h1>
+    </section>
+    <ul class="horizontal">
+
+        <li>
+            Consumo de energia =
+            <%= parts.TDP %>;
+        </li>
+
+        <li>
+            Memória Ram =
+            <%= parts.ramMemory %> GB;
+        </li>
+
+        <% if (parts.romMemory> 0) { %>
+            <li>
+                Memória Rom =
+                <%= parts.romMemory %> GB;
+            </li>
+            <% } %>
+
+    </ul>
+
+    <section class="titleBackground">
+        <h1>Placa-mãe<h1>
+    </section>
+    <ul>
+        <li>
+            Chipset =
+            <%= parts.motherBoard.chipset %>;
+        </li>
+
+        <li>
+            Socket =
+            <%= parts.motherBoard.socket %>;
+        </li>
+
+        <li>
+            Suporte M2 =
+            <% if (parts.motherBoard.hasSocketM2) { %>
+                Possui;
+                <% } %>
+
+                    <% if (! parts.motherBoard.hasSocketM2) { %>
+                        Não possui;
+                    <% } %>
+
+        </li>
+
+        <li>
+            Suporta até =
+            <%= parts.motherBoard.memorySizeSupport %> de Memória Ram;
+        </li>
+
+        <li>
+            Quantidade de slots de memória =
+            <%= parts.motherBoard.memorySlotAmount %>;
+        </li>
+
+        <li>
+            Tipo de slot de memória =
+            <%= parts.motherBoard.memorySlotType %>;
+        </li>
+
+        <li>
+            Frequencia de memória suportada =
+            <% parts.motherBoard.memorySlotFrequency.forEach(function(frequency){ %>
+                <%= frequency %>MHz -
+                    <% }); %>;
+        </li>
+
+        <li>
+            Entrada PCI-Express =
+            <% parts.motherBoard.socketPCIE.forEach(function(socket){ %>
+                tipo: <%= socket.type %>, versão: <%= socket.version %> --
+                        <% }); %>;
+        </li>
+    </ul>
+
+    <section class="titleBackground">
+        <h1>Processador<h1>
+    </section>
+    <ul>
+
+        <li>
+            Chipset =
+            <%= parts.cpu.chipset %>;
+        </li>
+
+        <li>
+            Socket =
+            <%= parts.cpu.socket %>;
+        </li>
+
+        <li>
+            Frequência mínima de clock =
+            <%= parts.cpu.baseClockSpeed %>;
+        </li>
+
+
+        <li>
+            Frequência máxima de clock =
+            <%= parts.cpu.maximumBoostSpeed %>;
+        </li>
+
+
+        <li>
+            Cache =
+            <%= parts.cpu.cache %>;
+        </li>
+
+        <li>
+            Core =
+            <%= parts.cpu.core %>;
+        </li>
+
+        <li>
+            Threads =
+            <%= parts.cpu.threads %>;
+        </li>
+
+        <li>
+            Processador gráfico =
+            <%= parts.cpu.graphicsProcessor %>;
+        </li>
+
+        <li>
+            Suporta até =
+            <%= parts.cpu.memorySizeSupport %> de Memória Ram;
+        </li>
+
+        <li>
+            Quantidade de slots de memória =
+            <%= parts.cpu.memorySupportAmountSlot %>;
+        </li>
+
+        <li>
+            Frequencia de memória suportada =
+            <% parts.cpu.memorySupportFrequency.forEach(function(frequency){ %>
+                <%= frequency %>MHz -
+            <% }); %>;
+        </li>
+
+    </ul>
+
+    <section class="titleBackground">
+        <h1>Cooler<h1>
+    </section>
+    <ul>
+        <li>
+            Máximo fluxo de ar do fan =
+            <%= parts.cooler.fanAirflow %> CFM;
+        </li>
+
+        <li>
+            Velocidade do Fan
+            <%= parts.cooler.speedFan %> RPM;
+        </li>
+
+        <li>
+            Frequencia de memória suportada =
+            <% parts.cooler.compatibilityCpu.forEach(function(compatibilityCpu){ %>
+                <%= compatibilityCpu %> -
+            <% }); %>;
+        </li>
+    </ul>
+
+    <% parts.ram.forEach(function(ram, index){ %>
+        <section class="titleBackground">
+            <h1>ram <%= index %> <h1>
+        </section>
+        <ul>
+
+            <li>
+                Frequencia da Memória =
+                <%= ram.memoryFrequency %> MHz;
+            </li>
+
+            <li>
+                Frequencia da Memória =
+                <%= ram.memorySize %> GB;
+            </li>
+
+            <li>
+                Tipo de slot =
+                <%= ram.memorySlotType %>;
+            </li>
+
+        </ul>
+
+    <% }); %>
+
+    <% if (parts.pciExpress) { %>
+        <section class="titleBackground">
+            <h1>Placa de vídeo<h1>
+        </section>
+
+        <ul>
+            <li> 
+                CUDA core = 
+                <%= parts.pciExpress.CUDACore %>;
+            </li>
+
+            <li> 
+                Padrão de bus = 
+                <%= parts.pciExpress.PCIeVersion %>;
+            </li>
+
+            <li> 
+                GPU base clock = 
+                <%= parts.pciExpress.baseClock %>MHz;
+            </li>
+
+            <li> 
+                GPU boost clock = 
+                <%= parts.pciExpress.boostClock %>MHz;
+            </li>
+
+            <li> 
+                Interface de memória = 
+                <%= parts.pciExpress.memoryInterface %>;
+            </li>
+
+            <li> 
+                Tamanho de memória = 
+                <%= parts.pciExpress.memorySize %> GB;
+            </li>
+
+            <li> 
+                Velocidade de memória = 
+                <%= parts.pciExpress.memorySpeed %>;
+            </li>
+
+            <li> 
+                Tipo de memória = 
+                <%= parts.pciExpress.memoryType %>;
+            </li>
+        </ul>
+
+    <% } %>
+
+    <% parts.rom.forEach(function(rom, index){ %>
+        <section class="titleBackground">
+            <h1>rom <%= index %> <h1>
+        </section>
+        <ul>
+
+            <li>
+                Tamanho da memória =
+                <%= rom.memorySize %> GB;
+            </li>
+
+            <li>
+                Velocidade de leitura =
+                <%= rom.reading %>;
+            </li>
+
+            <li>
+                Velocidade de escrita =
+                <%= rom.writing %>;
+            </li>
+
+            <% if (rom.rotation) { %>
+                <li>
+                    Rotação =
+                    <%= rom.rotation %>;
+                </li>
+            <% } %>
+
+        </ul>
+
+    <% }); %>
+
+    <% if (parts.m2) { %>
+        <section class="titleBackground">
+            <h1>M2<h1>
+        </section>
+        <ul>
+            <li> 
+                Interface = 
+                <%= parts.m2.format %>;
+            </li>
+
+            <li> 
+                Tamanho de memória = 
+                <%= parts.m2.memorySize %> GB;
+            </li>
+
+            <li> 
+                Formato = 
+                <%= parts.m2.model %>;
+            </li>
+
+            <li>
+                Velocidade de leitura =
+                <%= parts.m2.reading %>;
+            </li>
+
+            <li>
+                Velocidade de escrita =
+                <%= parts.m2.writing %>;
+            </li>
+        </ul>
+
+    <% } %>
+
+    <% if (parts.recorder) { %>
+        <section class="titleBackground">
+            <h1>Leitor de DVD<h1>
+        </section>
+        <ul>
+            <li> 
+                Possui
+            </li>
+
+        </ul>
+
+    <% } %>
+
+    <% if (parts.powerSupply) { %>
+        <section class="titleBackground">
+            <h1>Fonte de energia<h1>
+        </section>
+        <ul>
+            <li> 
+                voltagem = 
+                <%= parts.powerSupply.voltage %>;
+            </li>
+
+            <li> 
+                Capacidade de saída = 
+                <%= parts.powerSupply.wattage %> W;
+            </li>
+        </ul>
+
+    <% } %>
+</body>
+
 </html>
