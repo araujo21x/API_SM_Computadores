@@ -17,11 +17,6 @@ export const ResponseMessages: any = {
     es: ''
   },
   '001-002': {
-    ptBR: 'Formado do tipo de peça, precisa ser uma string.',
-    en: '',
-    es: ''
-  },
-  '001-003': {
     ptBR: 'Tipo de peça não cadastrado.',
     en: '',
     es: ''
@@ -46,6 +41,31 @@ export const ResponseMessages: any = {
   },
   '003-002': {
     ptBR: 'Erro ao criar template.',
+    en: '',
+    es: ''
+  },
+  '003-003': {
+    ptBR: 'Seu computador precisa de uma placa-mãe.',
+    en: '',
+    es: ''
+  },
+  '003-004': {
+    ptBR: 'Seu computador precisa de uma processador.',
+    en: '',
+    es: ''
+  },
+  '003-005': {
+    ptBR: 'Seu computador precisa de uma cooler.',
+    en: '',
+    es: ''
+  },
+  '003-006': {
+    ptBR: 'Seu computador precisa de pelo menos uma memória.',
+    en: '',
+    es: ''
+  },
+  '003-007': {
+    ptBR: 'Seu computador precisa de uma fonte de energia.',
     en: '',
     es: ''
   }

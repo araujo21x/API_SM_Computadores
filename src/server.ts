@@ -4,7 +4,6 @@ import cors from 'cors';
 import helmet from 'helmet';
 
 import compression from 'compression';
-import userRouter from './modules/user';
 import partsRouter from './modules/parts';
 import gridMotherRouter from './modules/gridMother';
 import finishRouter from './modules/finish';
@@ -25,7 +24,6 @@ class App {
   }
 
   private routes (): void {
-    this.app.use(userRouter);
     this.app.use(partsRouter);
     this.app.use(gridMotherRouter);
     this.app.use(finishRouter);

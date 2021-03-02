@@ -2,21 +2,29 @@ import { Request, Response } from 'express';
 import fs from 'fs';
 import helper from './finish.helper';
 
+import { ResponseCode } from '../../helpers/response/responseCode';
+
 class FinishRepository {
-  public async finish (req: Request, res: Response):Promise<void> {
-    const dir: string = await this.sendPDV(req);
+  public async finish (req: Request, res: Response): Promise<void> {
     res.contentType('application/pdf');
-    return res.sendFile(dir);
+    return res.sendFile(await this.sendPDV(req));
   }
 
   private async sendPDV (req: Request): Promise<string> {
-    const dir:string = await helper.cratePDF(req);
+    helper.isValidParts(req.body);
 
-    setTimeout(() => {
-      fs.unlinkSync(dir);
-    }, 5000);
+    try {
+      const dir:string = await helper.cratePDF(req);
 
-    return dir;
+      setTimeout(() => {
+        fs.unlinkSync(dir);
+      }, 8000);
+
+      return dir;
+    } catch (err) {
+      if (err.message === 'E_003_002') { throw new Error(ResponseCode.E_003_002); }
+      throw new Error(ResponseCode.E_003_001);
+    }
   }
 }
 

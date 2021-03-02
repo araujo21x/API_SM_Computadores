@@ -9,8 +9,7 @@ class GridMotherHelper {
       .leftJoinAndSelect('grid.pieceGrid', 'pieceGrid')
       .where('grid.mother =:id', { id })
       .getMany();
-
-    return this.gridResponse(grids);
+    return grids.length === 0 ? undefined : this.gridResponse(grids);
   }
 
   private gridResponse (grids: Array<GridMother>): any {

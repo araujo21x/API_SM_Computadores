@@ -8,9 +8,12 @@ class GridMotherRepository {
   }
 
   private async findAllGrids (req: Request): Promise<any> {
-    const id = Number(req.params.id);
-    if (!id) throw new Error(ResponseCode.E_002_001);
-    return await helper.getGrids(id);
+    const { id } = req.params;
+    if (!Number(id) || !id) throw new Error(ResponseCode.E_002_001);
+    const response = await helper.getGrids(Number(id));
+    if (!response) throw new Error(ResponseCode.E_002_002);
+
+    return response;
   }
 }
 
