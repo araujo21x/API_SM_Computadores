@@ -7,7 +7,7 @@ class GridMotherController {
     try {
       return await repository.show(req, res);
     } catch (err) {
-      return responseError(res, err.message);
+      return responseError(res, err.message, 404);
     }
   }
 }

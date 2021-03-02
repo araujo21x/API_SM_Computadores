@@ -8,14 +8,22 @@ class PartsRepository {
     return res.jsonp(await this.indexByType(req));
   }
 
+  public async filterByType (req: Request, res: Response): Promise<Response> {
+    return res.jsonp(await this.partsFilter(req));
+  }
+
   private async indexByType (req: Request): Promise<any> {
     const { type } = req.query;
 
     if (!type) throw new Error(ResponseCode.E_001_001);
-    if (typeof type !== 'string') throw new Error(ResponseCode.E_001_002);
-    if (!typesValid(type)) throw new Error(ResponseCode.E_001_003);
+    if (!typesValid(String(type))) throw new Error(ResponseCode.E_001_002);
 
-    return await helper.findParts(type);
+    return await helper.findParts(String(type));
+  }
+
+  private async partsFilter (req: Request): Promise<any> {
+    const { type } = req.body;
+    if (!typesValid(type)) throw new Error(ResponseCode.E_001_002);
   }
 }
 

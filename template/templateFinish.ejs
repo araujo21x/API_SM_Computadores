@@ -82,11 +82,11 @@
             Suporte M2 =
             <% if (parts.motherBoard.hasSocketM2) { %>
                 Possui;
-                <% } %>
+            <% } %>
 
-                    <% if (! parts.motherBoard.hasSocketM2) { %>
-                        Não possui;
-                    <% } %>
+            <% if (! parts.motherBoard.hasSocketM2) { %>
+                 Não possui;
+            <% } %>
 
         </li>
 
@@ -108,15 +108,15 @@
         <li>
             Frequencia de memória suportada =
             <% parts.motherBoard.memorySlotFrequency.forEach(function(frequency){ %>
-                <%= frequency %>MHz -
-                    <% }); %>;
+                <%= frequency %> MHz -
+            <% }); %>;
         </li>
 
         <li>
             Entrada PCI-Express =
             <% parts.motherBoard.socketPCIE.forEach(function(socket){ %>
                 tipo: <%= socket.type %>, versão: <%= socket.version %> --
-                        <% }); %>;
+            <% }); %>;
         </li>
     </ul>
 
@@ -281,38 +281,40 @@
         </ul>
 
     <% } %>
+    
+    <% if (parts.rom) { %>
+        <% parts.rom.forEach(function(rom, index){ %>
+            <section class="titleBackground">
+                <h1>rom <%= index %> <h1>
+            </section>
+            <ul>
 
-    <% parts.rom.forEach(function(rom, index){ %>
-        <section class="titleBackground">
-            <h1>rom <%= index %> <h1>
-        </section>
-        <ul>
-
-            <li>
-                Tamanho da memória =
-                <%= rom.memorySize %> GB;
-            </li>
-
-            <li>
-                Velocidade de leitura =
-                <%= rom.reading %>;
-            </li>
-
-            <li>
-                Velocidade de escrita =
-                <%= rom.writing %>;
-            </li>
-
-            <% if (rom.rotation) { %>
                 <li>
-                    Rotação =
-                    <%= rom.rotation %>;
+                    Tamanho da memória =
+                    <%= rom.memorySize %> GB;
                 </li>
-            <% } %>
 
-        </ul>
+                <li>
+                    Velocidade de leitura =
+                    <%= rom.reading %>;
+                </li>
 
-    <% }); %>
+                <li>
+                    Velocidade de escrita =
+                    <%= rom.writing %>;
+                </li>
+
+                <% if (rom.rotation) { %>
+                    <li>
+                        Rotação =
+                        <%= rom.rotation %>;
+                    </li>
+                <% } %>
+
+            </ul>
+
+        <% }); %>
+    <% } %>
 
     <% if (parts.m2) { %>
         <section class="titleBackground">

@@ -1,4 +1,4 @@
-import { Response, Request } from 'express';
+import { Response } from 'express';
 import { ResponseCode } from './responseCode';
 import ResponseHelper, { ResponseType } from './responseHelper';
 

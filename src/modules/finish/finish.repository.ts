@@ -6,9 +6,8 @@ import { ResponseCode } from '../../helpers/response/responseCode';
 
 class FinishRepository {
   public async finish (req: Request, res: Response): Promise<void> {
-    const dir: string = await this.sendPDV(req);
     res.contentType('application/pdf');
-    return res.sendFile(dir);
+    return res.sendFile(await this.sendPDV(req));
   }
 
   private async sendPDV (req: Request): Promise<string> {
