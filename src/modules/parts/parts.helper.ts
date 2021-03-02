@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm';
 
+import { ResponseCode } from '../../helpers/response/responseCode';
 import Mother from '../../database/entity/mother.entity';
 import Cpu from '../../database/entity/cpu.entity';
 import Cooler from '../../database/entity/cooler.entity';
@@ -210,6 +211,193 @@ class PartsHelper {
     newRecorder.createdAt = undefined;
 
     return newRecorder;
+  }
+
+  // filter
+  public validateTypeVariable (fields: any):void {
+    switch (String(fields.type)) {
+      case 'motherBoard':
+        this.isValidMotherFilter(fields);
+        break;
+      case 'cpu':
+        this.isValidCpu(fields);
+        break;
+      case 'cooler':
+        this.isValidCooler(fields);
+        break;
+      case 'ram':
+        this.isValidRam(fields);
+        break;
+      case 'pciExpress':
+        this.isValidPci(fields);
+        break;
+      case 'rom':
+        this.isValidRom(fields);
+        break;
+      case 'm2':
+        this.isValidM2(fields);
+        break;
+      case 'powerSupply':
+        this.isPsu(fields);
+        break;
+    }
+  }
+
+  private isValidMotherFilter (fields: any): void {
+    const {
+      suportM2,
+      memorySizeSupport,
+      memorySlotAmount,
+      motherFrequencies
+    } = fields;
+    if (suportM2 !== undefined) {
+      if (suportM2 !== 'true' && suportM2 !== 'false') throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (memorySizeSupport !== undefined) {
+      if (isNaN(Number(memorySizeSupport))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (memorySlotAmount !== undefined) {
+      if (isNaN(Number(memorySlotAmount))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (motherFrequencies !== undefined) {
+      if (isNaN(Number(motherFrequencies))) throw new Error(ResponseCode.E_004_001);
+    }
+  }
+
+  private isValidCpu (fields: any): void {
+    const {
+      memorySizeSupport,
+      memorySlotAmount,
+      cpuFrequencies,
+      baseClockSpeed,
+      maximumBoostSpeed,
+      cache,
+      core,
+      threads
+    } = fields;
+
+    if (memorySizeSupport !== undefined) {
+      if (isNaN(Number(memorySizeSupport))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (memorySlotAmount !== undefined) {
+      if (isNaN(Number(memorySlotAmount))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (cpuFrequencies !== undefined) {
+      if (isNaN(Number(cpuFrequencies))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (baseClockSpeed !== undefined) {
+      if (isNaN(Number(baseClockSpeed))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (maximumBoostSpeed !== undefined) {
+      if (isNaN(Number(maximumBoostSpeed))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (cache !== undefined) {
+      if (isNaN(Number(cache))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (core !== undefined) {
+      if (isNaN(Number(core))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (threads !== undefined) {
+      if (isNaN(Number(threads))) throw new Error(ResponseCode.E_004_001);
+    }
+  }
+
+  private isValidCooler (fields: any): void {
+    const {
+      speedFan,
+      fanAirflow
+    } = fields;
+
+    if (speedFan !== undefined) {
+      if (isNaN(Number(speedFan))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (fanAirflow !== undefined) {
+      if (isNaN(Number(fanAirflow))) throw new Error(ResponseCode.E_004_001);
+    }
+  }
+
+  private isValidRam (fields: any): void {
+    const {
+      memoryFrequency,
+      memorySize
+    } = fields;
+
+    if (memoryFrequency !== undefined) {
+      if (isNaN(Number(memoryFrequency))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (memorySize !== undefined) {
+      if (isNaN(Number(memorySize))) throw new Error(ResponseCode.E_004_001);
+    }
+  }
+
+  private isValidPci (fields: any): void {
+    const {
+      baseClock,
+      boostClock,
+      CUDACore,
+      memorySize
+    } = fields;
+
+    if (baseClock !== undefined) {
+      if (isNaN(Number(baseClock))) throw new Error(ResponseCode.E_004_001);
+    }
+    if (boostClock !== undefined) {
+      if (isNaN(Number(boostClock))) throw new Error(ResponseCode.E_004_001);
+    }
+    if (CUDACore !== undefined) {
+      if (isNaN(Number(CUDACore))) throw new Error(ResponseCode.E_004_001);
+    }
+    if (memorySize !== undefined) {
+      if (isNaN(Number(memorySize))) throw new Error(ResponseCode.E_004_001);
+    }
+  }
+
+  private isValidRom (fields: any): void {
+    const {
+      memorySize,
+      rotation
+    } = fields;
+
+    if (memorySize !== undefined) {
+      if (isNaN(Number(memorySize))) throw new Error(ResponseCode.E_004_001);
+    }
+
+    if (rotation !== undefined) {
+      if (isNaN(Number(rotation))) throw new Error(ResponseCode.E_004_001);
+    }
+  }
+
+  private isValidM2 (fields: any): void {
+    const {
+      memorySize,
+      model
+    } = fields;
+    if (memorySize !== undefined) {
+      if (isNaN(Number(memorySize))) throw new Error(ResponseCode.E_004_001);
+    }
+    if (model !== undefined) {
+      if (isNaN(Number(model))) throw new Error(ResponseCode.E_004_001);
+    }
+  }
+
+  private isPsu (fields: any): void {
+    const { wattage } = fields;
+
+    if (wattage !== undefined) {
+      if (isNaN(Number(wattage))) throw new Error(ResponseCode.E_004_001);
+    }
   }
 }
 

@@ -68,5 +68,16 @@ export const ResponseMessages: any = {
     ptBR: 'Seu computador precisa de uma fonte de energia.',
     en: '',
     es: ''
+  },
+  // Filter
+  '004-001': {
+    ptBR: 'Formato de um dos campos enviado errado.',
+    en: '',
+    es: ''
+  },
+  '004-002': {
+    ptBR: 'Nenhuma peçã com essas caracteristicas.',
+    en: '',
+    es: ''
   }
 };

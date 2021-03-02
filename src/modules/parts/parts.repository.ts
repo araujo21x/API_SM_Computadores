@@ -22,8 +22,11 @@ class PartsRepository {
   }
 
   private async partsFilter (req: Request): Promise<any> {
-    const { type } = req.body;
-    if (!typesValid(type)) throw new Error(ResponseCode.E_001_002);
+    const { type } = req.query;
+    if (!type) throw new Error(ResponseCode.E_001_001);
+    if (!typesValid(String(type))) throw new Error(ResponseCode.E_001_002);
+    helper.validateTypeVariable(req.query);
+    return 'foi';
   }
 }
 
