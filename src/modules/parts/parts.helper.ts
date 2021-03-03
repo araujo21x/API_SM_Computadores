@@ -1,6 +1,15 @@
-import { getRepository } from 'typeorm';
-
+import { getRepository, getConnection } from 'typeorm';
 import { ResponseCode } from '../../helpers/response/responseCode';
+
+import MotherQueries from '../../database/entityRepository/motherQueries';
+import CpuQueries from '../../database/entityRepository/cpuQueries';
+import CoolerQueries from '../../database/entityRepository/coolerQueries';
+import RamQueries from '../../database/entityRepository/ramQueries';
+import PcieQueries from '../../database/entityRepository/pcieQueries';
+import RomQueries from '../../database/entityRepository/romQueries';
+import M2Queries from '../../database/entityRepository/m2Queries';
+import PsuQueries from '../../database/entityRepository/psuQueries';
+
 import Mother from '../../database/entity/mother.entity';
 import Cpu from '../../database/entity/cpu.entity';
 import Cooler from '../../database/entity/cooler.entity';
@@ -81,6 +90,158 @@ class PartsHelper {
     return parts;
   }
 
+  public validateTypeVariable (fields: any): void {
+    switch (String(fields.type)) {
+      case 'motherBoard':
+        this.isValidMotherFilter(fields);
+        break;
+      case 'cpu':
+        this.isValidCpu(fields);
+        break;
+      case 'cooler':
+        this.isValidCooler(fields);
+        break;
+      case 'ram':
+        this.isValidRam(fields);
+        break;
+      case 'pciExpress':
+        this.isValidPci(fields);
+        break;
+      case 'rom':
+        this.isValidRom(fields);
+        break;
+      case 'm2':
+        this.isValidM2(fields);
+        break;
+      case 'powerSupply':
+        this.isPsu(fields);
+        break;
+    }
+  }
+
+  public async findByFilter (fields: any): Promise<Array<any>> {
+    return new Promise((resolve, reject) => {
+      switch (String(fields.type)) {
+        case 'motherBoard':
+          getConnection().transaction(async transaction => {
+            const motherQueries: MotherQueries = transaction.getCustomRepository(MotherQueries);
+
+            motherQueries.filterMother(fields)
+              .then((mothers: Mother[]) => {
+                if (fields.motherFrequencies) {
+                  const newMothers = mothers.map((element: any) => {
+                    return getRepository(Mother).createQueryBuilder('mother')
+                      .leftJoinAndSelect('mother.motherfrequency', 'frequency')
+                      .leftJoinAndSelect('mother.pcieSocket', 'pcieSocket')
+                      .leftJoinAndSelect('mother.m2Socket', 'm2Socket')
+                      .leftJoinAndSelect('m2Socket.m2SocketType', 'm2SocketType')
+                      .where('mother.id = :id', { id: element.id })
+                      .getOne();
+                  });
+
+                  Promise.all(newMothers).then(motherProm => {
+                    resolve(motherProm.map((element: any) => {
+                      return this.motherResponse(element);
+                    }));
+                  })
+                    .catch(err => reject(err));
+                };
+                resolve(mothers.map((element: Mother) => this.motherResponse(element)));
+              })
+              .catch((err) => reject(err));
+          });
+          break;
+        case 'cpu':
+          getConnection().transaction(async transaction => {
+            const cpuQueries: CpuQueries = transaction.getCustomRepository(CpuQueries);
+            cpuQueries.filterCpu(fields)
+              .then((cpus: Cpu[]) => {
+                if (fields.cpuFrequencies) {
+                  const newCpus = cpus.map(cpu => cpuQueries.getCpuById(cpu.id));
+                  Promise.all(newCpus)
+                    .then(promiseCpu => {
+                      resolve(promiseCpu.map((element:any) => this.cpuResponse(element)));
+                    })
+                    .catch((err) => reject(err));
+                }
+                resolve(cpus.map((element: Cpu) => this.cpuResponse(element)));
+              })
+              .catch((err) => reject(err));
+          });
+          break;
+        case 'cooler':
+          getConnection().transaction(async transaction => {
+            const coolerQueries: CoolerQueries = transaction.getCustomRepository(CoolerQueries);
+            coolerQueries.filterCooler(fields)
+              .then((coolers: Cooler[]) => {
+                if (fields.compatibilityCpu) {
+                  const newCoolers = coolers.map(cooler => coolerQueries.getCoolerById(cooler.id));
+                  Promise.all(newCoolers)
+                    .then(promiseCooler => {
+                      resolve(promiseCooler.map((element:any) => this.coolerResponse(element)));
+                    })
+                    .catch((err) => reject(err));
+                }
+                resolve(coolers.map((element: Cooler) => this.coolerResponse(element)));
+              })
+              .catch((err) => reject(err));
+          });
+          break;
+        case 'ram':
+          getConnection().transaction(async transaction => {
+            const ramQueries: RamQueries = transaction.getCustomRepository(RamQueries);
+            ramQueries.filterRam(fields)
+              .then((ramArray: Ram[]) => {
+                resolve(ramArray.map((element: Ram) => this.ramResponse(element)));
+              })
+              .catch((err) => reject(err));
+          });
+          break;
+        case 'pciExpress':
+          getConnection().transaction(async transaction => {
+            const pcieQueries: PcieQueries = transaction.getCustomRepository(PcieQueries);
+            pcieQueries.filterPcie(fields)
+              .then((pcieArray: Pcie[]) => {
+                resolve(pcieArray.map((element: Pcie) => this.pcieExpressResponse(element)));
+              })
+              .catch((err) => reject(err));
+          });
+          break;
+        case 'rom':
+          getConnection().transaction(async transaction => {
+            const romQueries: RomQueries = transaction.getCustomRepository(RomQueries);
+            romQueries.filterRom(fields)
+              .then((romArray: Rom[]) => {
+                resolve(romArray.map((element: Rom) => this.romResponse(element)));
+              })
+              .catch((err) => reject(err));
+          });
+          break;
+        case 'm2':
+          getConnection().transaction(async transaction => {
+            const m2Queries: M2Queries = transaction.getCustomRepository(M2Queries);
+            m2Queries.filterM2(fields)
+              .then((m2Array: M2[]) => {
+                resolve(m2Array.map((element: M2) => this.m2Response(element)));
+              })
+              .catch((err) => reject(err));
+          });
+          break;
+        case 'powerSupply':
+          getConnection().transaction(async transaction => {
+            const psuQueries: PsuQueries = transaction.getCustomRepository(PsuQueries);
+            psuQueries.filterPsu(fields)
+              .then((psuArray: Psu[]) => {
+                resolve(psuArray.map((element: Psu) => this.psuResponse(element)));
+              })
+              .catch((err) => reject(err));
+          });
+          break;
+      }
+    });
+  }
+
+  // Find
   private motherResponse (mother: Mother): any {
     const newMother: any = mother;
 
@@ -214,34 +375,6 @@ class PartsHelper {
   }
 
   // filter
-  public validateTypeVariable (fields: any):void {
-    switch (String(fields.type)) {
-      case 'motherBoard':
-        this.isValidMotherFilter(fields);
-        break;
-      case 'cpu':
-        this.isValidCpu(fields);
-        break;
-      case 'cooler':
-        this.isValidCooler(fields);
-        break;
-      case 'ram':
-        this.isValidRam(fields);
-        break;
-      case 'pciExpress':
-        this.isValidPci(fields);
-        break;
-      case 'rom':
-        this.isValidRom(fields);
-        break;
-      case 'm2':
-        this.isValidM2(fields);
-        break;
-      case 'powerSupply':
-        this.isPsu(fields);
-        break;
-    }
-  }
 
   private isValidMotherFilter (fields: any): void {
     const {

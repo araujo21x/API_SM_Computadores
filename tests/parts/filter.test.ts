@@ -6,11 +6,13 @@ import startConnection from '../../src/database/index';
 
 const pathFilter: string = '/v1/piece/filter';
 const request = supertest(app);
+
 const filterBody = {
-  memoryFrequency: '1600',
-  memorySize: '8',
-  memorySlotType: 'DDR4',
-  type: 'ram'
+  memorySizeSupport: '32',
+  // socket: 'LGA1200',
+  memorySlotType: 'DDR3',
+  // motherFrequencies: '2666',
+  type: 'motherBoard'
 };
 
 beforeAll(async () => {
@@ -62,7 +64,7 @@ describe('Suit de tests for filter parts ', (): void => {
 
   test('[ 004-002 ] - [ /v1/piece/filter ]', async done => {
     const { status, body: { result } } = await request.get(pathFilter)
-      .query({ type: 'ram', memorySizeSupport: 'DDR5' })
+      .query({ type: 'motherBoard', memorySlotType: 'DDR5' })
       .send();
 
     expect(status).toBe(404);

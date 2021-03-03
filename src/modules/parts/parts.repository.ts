@@ -26,7 +26,10 @@ class PartsRepository {
     if (!type) throw new Error(ResponseCode.E_001_001);
     if (!typesValid(String(type))) throw new Error(ResponseCode.E_001_002);
     helper.validateTypeVariable(req.query);
-    return 'foi';
+
+    const parts = await helper.findByFilter(req.query);
+    if (parts.length === 0) throw new Error(ResponseCode.E_004_002);
+    return parts;
   }
 }
 
