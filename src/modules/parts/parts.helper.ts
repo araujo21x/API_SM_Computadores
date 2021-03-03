@@ -145,8 +145,9 @@ class PartsHelper {
                     }));
                   })
                     .catch(err => reject(err));
-                };
-                resolve(mothers.map((element: Mother) => this.motherResponse(element)));
+                } else {
+                  resolve(mothers.map((element: Mother) => this.motherResponse(element)));
+                }
               })
               .catch((err) => reject(err));
           });
@@ -163,8 +164,9 @@ class PartsHelper {
                       resolve(promiseCpu.map((element:any) => this.cpuResponse(element)));
                     })
                     .catch((err) => reject(err));
+                } else {
+                  resolve(cpus.map((element: Cpu) => this.cpuResponse(element)));
                 }
-                resolve(cpus.map((element: Cpu) => this.cpuResponse(element)));
               })
               .catch((err) => reject(err));
           });
@@ -181,8 +183,9 @@ class PartsHelper {
                       resolve(promiseCooler.map((element:any) => this.coolerResponse(element)));
                     })
                     .catch((err) => reject(err));
+                } else {
+                  resolve(coolers.map((element: Cooler) => this.coolerResponse(element)));
                 }
-                resolve(coolers.map((element: Cooler) => this.coolerResponse(element)));
               })
               .catch((err) => reject(err));
           });

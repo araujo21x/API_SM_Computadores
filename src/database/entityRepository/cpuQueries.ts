@@ -38,7 +38,7 @@ export default class cpuQueries extends Repository<Cpu> {
     }
 
     if (memorySlotAmount) {
-      query.andWhere('cpu.memorySlotAmount = :memorySlotAmount',
+      query.andWhere('cpu.memorySupportAmountSlot = :memorySlotAmount',
         { memorySlotAmount: Number(memorySlotAmount) });
     }
 
