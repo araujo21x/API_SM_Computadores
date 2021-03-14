@@ -8,7 +8,9 @@ export default class RomQueries extends Repository<Rom> {
       memorySize,
       reading,
       writing,
-      rotation
+      rotation,
+      order,
+      sortType
     } =
       fields;
 
@@ -29,6 +31,9 @@ export default class RomQueries extends Repository<Rom> {
     if (rotation) {
       query.andWhere('rom.rotation = :rotation',
         { rotation: Number(rotation) });
+    }
+    if (order) {
+      query.orderBy(`rom.${order}`, sortType);
     }
     return query.getMany();
   }

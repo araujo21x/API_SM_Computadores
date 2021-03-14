@@ -15,7 +15,9 @@ export default class cpuQueries extends Repository<Cpu> {
       cache,
       core,
       threads,
-      grapshicProcessor
+      grapshicProcessor,
+      order,
+      sortType
     } =
     fields;
 
@@ -73,8 +75,13 @@ export default class cpuQueries extends Repository<Cpu> {
     }
 
     if (grapshicProcessor) {
-      query.andWhere('cpu.grapshicProcessor = :grapshicProcessor',
+      query.andWhere('cpu.graphicsProcessor = :grapshicProcessor',
         { grapshicProcessor: String(grapshicProcessor) });
+    }
+    if (order) {
+      order !== 'cpuFrequencies'
+        ? query.orderBy(`cpu.${order}`, sortType)
+        : query.orderBy('frequency.frequency', sortType);
     }
     return query.getMany();
   }

@@ -7,7 +7,9 @@ export default class RamQueries extends Repository<Ram> {
     const {
       memoryFrequency,
       memorySize,
-      memorySlotType
+      memorySlotType,
+      order,
+      sortType
     } =
       fields;
 
@@ -27,6 +29,11 @@ export default class RamQueries extends Repository<Ram> {
       query.andWhere('ram.memorySlotType = :memorySlotType',
         { memorySlotType: String(memorySlotType) });
     }
+
+    if (order) {
+      query.orderBy(`ram.${order}`, sortType);
+    }
+
     return query.getMany();
   }
 }

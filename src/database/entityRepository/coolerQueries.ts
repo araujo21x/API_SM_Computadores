@@ -7,7 +7,9 @@ export default class CoolerQueries extends Repository<Cooler> {
     const {
       compatibilityCpu,
       speedFan,
-      fanAirflow
+      fanAirflow,
+      order,
+      sortType
     } =
       fields;
 
@@ -28,6 +30,13 @@ export default class CoolerQueries extends Repository<Cooler> {
       query.andWhere('cooler.fanAirflow = :fanAirflow',
         { fanAirflow: Number(fanAirflow) });
     }
+
+    if (order) {
+      order !== 'compatibilityCpu'
+        ? query.orderBy(`cooler.${order}`, sortType)
+        : query.orderBy('compatibilityCpu.compatibilityCpu', sortType);
+    }
+
     return query.getMany();
   }
 

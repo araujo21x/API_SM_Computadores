@@ -117,6 +117,9 @@ class PartsHelper {
         this.isPsu(fields);
         break;
     }
+    if (fields.order) {
+      if (!fields.sortType) throw new Error(ResponseCode.E_004_003);
+    }
   }
 
   public async findByFilter (fields: any): Promise<Array<any>> {
@@ -152,6 +155,7 @@ class PartsHelper {
               .catch((err) => reject(err));
           });
           break;
+
         case 'cpu':
           getConnection().transaction(async transaction => {
             const cpuQueries: CpuQueries = transaction.getCustomRepository(CpuQueries);
@@ -171,6 +175,7 @@ class PartsHelper {
               .catch((err) => reject(err));
           });
           break;
+
         case 'cooler':
           getConnection().transaction(async transaction => {
             const coolerQueries: CoolerQueries = transaction.getCustomRepository(CoolerQueries);
@@ -190,6 +195,7 @@ class PartsHelper {
               .catch((err) => reject(err));
           });
           break;
+
         case 'ram':
           getConnection().transaction(async transaction => {
             const ramQueries: RamQueries = transaction.getCustomRepository(RamQueries);
@@ -200,6 +206,7 @@ class PartsHelper {
               .catch((err) => reject(err));
           });
           break;
+
         case 'pciExpress':
           getConnection().transaction(async transaction => {
             const pcieQueries: PcieQueries = transaction.getCustomRepository(PcieQueries);
@@ -210,6 +217,7 @@ class PartsHelper {
               .catch((err) => reject(err));
           });
           break;
+
         case 'rom':
           getConnection().transaction(async transaction => {
             const romQueries: RomQueries = transaction.getCustomRepository(RomQueries);
@@ -220,6 +228,7 @@ class PartsHelper {
               .catch((err) => reject(err));
           });
           break;
+
         case 'm2':
           getConnection().transaction(async transaction => {
             const m2Queries: M2Queries = transaction.getCustomRepository(M2Queries);
@@ -230,6 +239,7 @@ class PartsHelper {
               .catch((err) => reject(err));
           });
           break;
+
         case 'powerSupply':
           getConnection().transaction(async transaction => {
             const psuQueries: PsuQueries = transaction.getCustomRepository(PsuQueries);
@@ -386,19 +396,20 @@ class PartsHelper {
       memorySlotAmount,
       motherFrequencies
     } = fields;
-    if (suportM2 !== undefined) {
+
+    if (suportM2) {
       if (suportM2 !== 'true' && suportM2 !== 'false') throw new Error(ResponseCode.E_004_001);
     }
 
-    if (memorySizeSupport !== undefined) {
+    if (memorySizeSupport) {
       if (isNaN(Number(memorySizeSupport))) throw new Error(ResponseCode.E_004_001);
     }
 
-    if (memorySlotAmount !== undefined) {
+    if (memorySlotAmount) {
       if (isNaN(Number(memorySlotAmount))) throw new Error(ResponseCode.E_004_001);
     }
 
-    if (motherFrequencies !== undefined) {
+    if (motherFrequencies) {
       if (isNaN(Number(motherFrequencies))) throw new Error(ResponseCode.E_004_001);
     }
   }

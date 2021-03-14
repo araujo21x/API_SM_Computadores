@@ -6,7 +6,9 @@ export default class PsuQueries extends Repository<Psu> {
   public filterPsu (fields: any) {
     const {
       voltage,
-      wattage
+      wattage,
+      order,
+      sortType
     } =
       fields;
 
@@ -19,7 +21,9 @@ export default class PsuQueries extends Repository<Psu> {
       query.andWhere('psu.wattage = :wattage',
         { wattage: Number(wattage) });
     }
-
+    if (order) {
+      query.orderBy(`psu.${order}`, sortType);
+    }
     return query.getMany();
   }
 }

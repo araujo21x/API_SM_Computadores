@@ -79,5 +79,10 @@ export const ResponseMessages: any = {
     ptBR: 'Nenhuma peçã com essas caracteristicas.',
     en: '',
     es: ''
+  },
+  '004-003': {
+    ptBR: 'Necessário escolher a maneira da ordenação.',
+    en: '',
+    es: ''
   }
 };

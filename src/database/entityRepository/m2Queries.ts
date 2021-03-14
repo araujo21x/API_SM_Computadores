@@ -9,7 +9,9 @@ export default class M2Queries extends Repository<M2> {
       memorySize,
       model,
       reading,
-      writing
+      writing,
+      order,
+      sortType
     } =
       fields;
 
@@ -34,7 +36,9 @@ export default class M2Queries extends Repository<M2> {
       query.andWhere('m2.writing = :writing',
         { writing: String(writing) });
     }
-
+    if (order) {
+      query.orderBy(`m2.${order}`, sortType);
+    }
     return query.getMany();
   }
 }

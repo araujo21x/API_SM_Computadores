@@ -11,7 +11,9 @@ export default class MotherQueries extends Repository<Mother> {
       memorySizeSupport,
       memorySlotAmount,
       memorySlotType,
-      motherFrequencies
+      motherFrequencies,
+      order,
+      sortType
     } =
       fields;
 
@@ -30,7 +32,7 @@ export default class MotherQueries extends Repository<Mother> {
         { socket: String(socket) });
     }
     if (suportM2) {
-      query.andWhere('mother.suportM2 = :suportM2',
+      query.andWhere('mother.hasSocketM2 = :suportM2',
         { suportM2: Boolean(suportM2) });
     }
     if (memorySizeSupport) {
@@ -48,6 +50,12 @@ export default class MotherQueries extends Repository<Mother> {
     if (motherFrequencies) {
       query.andWhere('frequency.frequency = :frequency',
         { frequency: Number(motherFrequencies) });
+    }
+
+    if (order) {
+      order !== 'motherFrequencies'
+        ? query.orderBy(`mother.${order}`, sortType)
+        : query.orderBy('frequency.frequency', sortType);
     }
 
     return query.getMany();

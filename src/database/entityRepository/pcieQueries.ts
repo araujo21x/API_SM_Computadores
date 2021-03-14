@@ -11,7 +11,9 @@ export default class PcieQueries extends Repository<Pcie> {
       memoryInterface,
       memorySize,
       memorySpeed,
-      memoryType
+      memoryType,
+      order,
+      sortType
     } =
       fields;
 
@@ -44,6 +46,9 @@ export default class PcieQueries extends Repository<Pcie> {
     if (memoryType) {
       query.andWhere('pcie.memoryType = :memoryType',
         { memoryType: String(memoryType) });
+    }
+    if (order) {
+      query.orderBy(`pcie.${order}`, sortType);
     }
     return query.getMany();
   }
