@@ -55,7 +55,7 @@ export const ResponseMessages: any = {
     es: ''
   },
   '003-005': {
-    ptBR: 'Seu computador precisa de uma cooler.',
+    ptBR: 'Seu computador precisa de um cooler.',
     en: '',
     es: ''
   },
