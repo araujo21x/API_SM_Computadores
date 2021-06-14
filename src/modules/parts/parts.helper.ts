@@ -19,6 +19,7 @@ import Psu from '../../database/entity/psu.entity';
 import Rom from '../../database/entity/rom.entity';
 import Recorder from '../../database/entity/recorder.entity';
 import M2 from '../../database/entity/m2.entity';
+import FilterQuestions from '../../database/entity/filterQuestions.entity';
 
 class PartsHelper {
   public async findParts (type: string): Promise<Array<any>> {
@@ -545,6 +546,17 @@ class PartsHelper {
     if (wattage !== undefined) {
       if (isNaN(Number(wattage))) throw new Error(ResponseCode.E_004_001);
     }
+  }
+
+  // filter fields
+
+  public async filterQuestions (typePart: string):Promise<any> {
+    const values = await getRepository(FilterQuestions).createQueryBuilder('questions')
+      .leftJoinAndSelect('questions.filterResponse', 'filterResponse')
+      .getMany();
+
+    console.log(values);
+    return values;
   }
 }
 
