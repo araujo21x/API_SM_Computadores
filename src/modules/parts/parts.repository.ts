@@ -39,7 +39,7 @@ class PartsRepository {
   private async getFieldsFilter (req: Request): Promise<any> {
     const { typePart } = req.query;
     if (!typesValid(String(typePart))) throw new Error(ResponseCode.E_001_002);
-    const response: any = helper.filterQuestions(String(typePart));
+    const response: any = await helper.filterQuestions(String(typePart));
     return response;
   }
 }
