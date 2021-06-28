@@ -48,6 +48,9 @@ class M2 {
   @Column({ nullable: false })
   dropImageId: string;
 
+  @Column({ nullable: false, default: 2 })
+  quantity: number;
+
   @UpdateDateColumn()
   updatedAt: Date;
 

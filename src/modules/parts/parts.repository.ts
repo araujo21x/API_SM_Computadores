@@ -12,6 +12,10 @@ class PartsRepository {
     return res.jsonp(await this.partsFilter(req));
   }
 
+  public async getFieldsFilterByType (req: Request, res: Response): Promise<Response> {
+    return res.jsonp(await this.getFieldsFilter(req));
+  }
+
   private async indexByType (req: Request): Promise<any> {
     const { type } = req.query;
 
@@ -30,6 +34,13 @@ class PartsRepository {
     const parts = await helper.findByFilter(req.query);
     if (parts.length === 0) throw new Error(ResponseCode.E_004_002);
     return parts;
+  }
+
+  private async getFieldsFilter (req: Request): Promise<any> {
+    const { typePart } = req.query;
+    if (!typesValid(String(typePart))) throw new Error(ResponseCode.E_001_002);
+    const response: any = await helper.filterQuestions(String(typePart));
+    return response;
   }
 }
 

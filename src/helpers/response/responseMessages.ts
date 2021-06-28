@@ -50,7 +50,7 @@ export const ResponseMessages: any = {
     es: ''
   },
   '003-004': {
-    ptBR: 'Seu computador precisa de uma processador.',
+    ptBR: 'Seu computador precisa de um processador.',
     en: '',
     es: ''
   },

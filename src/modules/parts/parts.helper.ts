@@ -1,5 +1,6 @@
 import { getRepository, getConnection } from 'typeorm';
 import { ResponseCode } from '../../helpers/response/responseCode';
+import getFilterResponse from '../../helpers/getFilterResponse';
 
 import MotherQueries from '../../database/entityRepository/motherQueries';
 import CpuQueries from '../../database/entityRepository/cpuQueries';
@@ -19,6 +20,11 @@ import Psu from '../../database/entity/psu.entity';
 import Rom from '../../database/entity/rom.entity';
 import Recorder from '../../database/entity/recorder.entity';
 import M2 from '../../database/entity/m2.entity';
+import FilterQuestions from '../../database/entity/filterQuestions.entity';
+
+import MotherFrequency from '../../database/entity/motherFrequency.entity';
+import CpuFrequency from '../../database/entity/cpuFrequency.entity';
+import CoolerSocket from '../../database/entity/coolerCompatibility.entity';
 
 class PartsHelper {
   public async findParts (type: string): Promise<Array<any>> {
@@ -165,7 +171,7 @@ class PartsHelper {
                   const newCpus = cpus.map(cpu => cpuQueries.getCpuById(cpu.id));
                   Promise.all(newCpus)
                     .then(promiseCpu => {
-                      resolve(promiseCpu.map((element:any) => this.cpuResponse(element)));
+                      resolve(promiseCpu.map((element: any) => this.cpuResponse(element)));
                     })
                     .catch((err) => reject(err));
                 } else {
@@ -185,7 +191,7 @@ class PartsHelper {
                   const newCoolers = coolers.map(cooler => coolerQueries.getCoolerById(cooler.id));
                   Promise.all(newCoolers)
                     .then(promiseCooler => {
-                      resolve(promiseCooler.map((element:any) => this.coolerResponse(element)));
+                      resolve(promiseCooler.map((element: any) => this.coolerResponse(element)));
                     })
                     .catch((err) => reject(err));
                 } else {
@@ -545,6 +551,85 @@ class PartsHelper {
     if (wattage !== undefined) {
       if (isNaN(Number(wattage))) throw new Error(ResponseCode.E_004_001);
     }
+  }
+
+  // filter fields
+
+  public async filterQuestions (typePart: string): Promise<any> {
+    const questions = await getRepository(FilterQuestions).createQueryBuilder('questions')
+      .leftJoinAndSelect('questions.filterResponse', 'filterResponse')
+      .where('questions.typePart = :typePart', { typePart })
+      .getMany();
+
+    const parts: any[] = await this.getPartsForFilter(typePart);
+    const otherFields: any[] = await this.getOtherFieldsForFilter(typePart);
+
+    questions.forEach((element: FilterQuestions, index:number) => {
+      if (!element.answerDB) {
+        questions[index].filterResponse = getFilterResponse(element, parts, otherFields);
+      }
+    });
+    return questions;
+  }
+
+  private async getPartsForFilter (typePart: string): Promise<any[]> {
+    let answer: any;
+    switch (typePart) {
+      case 'motherBoard':
+        answer = await getRepository(Mother).createQueryBuilder('mother')
+          .getMany();
+        break;
+      case 'cpu':
+        answer = await getRepository(Cpu).createQueryBuilder('cpu')
+          .getMany();
+        break;
+      case 'cooler':
+        answer = await getRepository(Cooler).createQueryBuilder('cooler')
+          .getMany();
+        break;
+      case 'ram':
+        answer = await getRepository(Ram).createQueryBuilder('ram')
+          .getMany();
+        break;
+      case 'rom':
+        answer = await getRepository(Rom).createQueryBuilder('Rom')
+          .getMany();
+        break;
+      case 'm2':
+        answer = await getRepository(M2).createQueryBuilder('m2')
+          .getMany();
+        break;
+      case 'pciExpress':
+        answer = await getRepository(Pcie).createQueryBuilder('pcie')
+          .getMany();
+        break;
+      case 'powerSupply':
+        answer = await getRepository(Psu).createQueryBuilder('powerSupply')
+          .getMany();
+        break;
+    }
+
+    return answer;
+  }
+
+  private async getOtherFieldsForFilter (typePart: string): Promise<any[]> {
+    let answer: any = [];
+    switch (typePart) {
+      case 'motherBoard':
+        answer = await getRepository(MotherFrequency).createQueryBuilder('mother')
+          .getMany();
+        break;
+      case 'cpu':
+        answer = await getRepository(CpuFrequency).createQueryBuilder('cpuFrequency')
+          .getMany();
+        break;
+      case 'cooler':
+        answer = await getRepository(CoolerSocket).createQueryBuilder('coolerSocket')
+          .getMany();
+        break;
+    }
+
+    return answer;
   }
 }
 

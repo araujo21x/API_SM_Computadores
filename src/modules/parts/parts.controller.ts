@@ -18,6 +18,14 @@ class PartsController {
       return responseError(res, err.message, 404);
     }
   }
+
+  public async getFieldsFilterByType (req: Request, res: Response): Promise<Response> {
+    try {
+      return await repository.getFieldsFilterByType(req, res);
+    } catch (err) {
+      return responseError(res, err.message, 404);
+    }
+  }
 }
 
 export default new PartsController();

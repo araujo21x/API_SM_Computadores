@@ -19,8 +19,35 @@ import M2 from '../src/database/entity/m2.entity';
 import Rom from '../src/database/entity/rom.entity';
 import Recorder from '../src/database/entity/recorder.entity';
 import Ram from '../src/database/entity/ram.entity';
+import FilterQuestions from '../src/database/entity/filterQuestions.entity';
+import FilterResponse from '../src/database/entity/filterResponse.entity';
 
 config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env' });
+const filterQuestionsFactory = (
+  name: string,
+  question: string,
+  answerDB: boolean,
+  typePart:string
+): FilterQuestions => {
+  const questions: FilterQuestions = new FilterQuestions();
+  questions.name = name;
+  questions.question = question;
+  questions.answerDB = answerDB;
+  questions.typePart = typePart;
+  return questions;
+};
+
+const filterResponseFactory = (
+  filterQuestions: FilterQuestions,
+  value: string,
+  text: string
+): FilterResponse => {
+  const response: FilterResponse = new FilterResponse();
+  response.filterQuestions = filterQuestions;
+  response.value = value;
+  response.text = text;
+  return response;
+};
 
 const motherFactory = (
   name: string,
@@ -338,6 +365,987 @@ async function Dump () {
   try {
     await startConnection();
     await getConnection().transaction(async transaction => {
+      // motherboard filter
+      const orderMotherboard = await transaction.save(filterQuestionsFactory(
+        'order',
+        'Ordenar por',
+        true,
+        'motherBoard'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderMotherboard,
+        'chipset',
+        'Chipset'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderMotherboard,
+        'socket',
+        'Socket'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderMotherboard,
+        'memorySizeSupport',
+        'Limite máximo de Ram'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderMotherboard,
+        'memorySlotAmount',
+        'Limite de slots de memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderMotherboard,
+        'memorySlotType',
+        'Tipo de slot de memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderMotherboard,
+        'motherFrequencies',
+        'Frequências de memória'
+      ));
+
+      const sortMotherboard = await transaction.save(filterQuestionsFactory(
+        'sortType',
+        'Ordenar de maneira',
+        true,
+        'motherBoard'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortMotherboard,
+        'ASC',
+        'Crescente'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortMotherboard,
+        'DESC',
+        'Decrescente'
+      ));
+
+      const showPieceMotherboard = await transaction.save(filterQuestionsFactory(
+        'showPieces',
+        'Mostrar Peças',
+        true,
+        'motherBoard'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPieceMotherboard,
+        'pluggable',
+        'Encaixáveis'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPieceMotherboard,
+        'notPluggable',
+        'Não Encaixáveis'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'chipset',
+        'Selecione um chipset',
+        false,
+        'motherBoard'
+      ));
+      await transaction.save(filterQuestionsFactory(
+        'socket',
+        'Selecione um socket',
+        false,
+        'motherBoard'
+      ));
+
+      const suporteM2Motherboard = await transaction.save(filterQuestionsFactory(
+        'suportM2',
+        'suporte a entrada M2',
+        true,
+        'motherBoard'
+      ));
+      await transaction.save(filterResponseFactory(
+        suporteM2Motherboard,
+        'true',
+        'Possui'
+      ));
+      await transaction.save(filterResponseFactory(
+        suporteM2Motherboard,
+        'false',
+        'Não possui'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'memorySizeSupport',
+        'Limite máximo de Ram',
+        false,
+        'motherBoard'
+      ));
+
+      const memorySlotAmountMotherboard = await transaction.save(filterQuestionsFactory(
+        'memorySlotAmount',
+        'Limite de slots de memória',
+        true,
+        'motherBoard'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotAmountMotherboard,
+        '1',
+        '1'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotAmountMotherboard,
+        '2',
+        '2'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotAmountMotherboard,
+        '3',
+        '3'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotAmountMotherboard,
+        '4',
+        '4'
+      ));
+
+      const memorySlotTypeMotherboard = await transaction.save(filterQuestionsFactory(
+        'memorySlotType',
+        'Tipo de slot de memória',
+        true,
+        'motherBoard'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotTypeMotherboard,
+        'DDR3',
+        'DDR3'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotTypeMotherboard,
+        'DDR4',
+        'DDR4'
+      ));
+      await transaction.save(filterQuestionsFactory(
+        'motherFrequencies',
+        'Frequências de memória suportadas',
+        false,
+        'motherBoard'
+      ));
+
+      // cpu filter
+      const orderCPU = await transaction.save(filterQuestionsFactory(
+        'order',
+        'Ordenar por',
+        true,
+        'cpu'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'name',
+        'Nome'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'chipset',
+        'Chipset'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'socket',
+        'Socket'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'memorySizeSupport',
+        'Limite máximo de Ram'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'memorySupportAmountSlot',
+        'Limite de slots de memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'cpuFrequencies',
+        'Frequências de memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'baseClockSpeed',
+        'Frequência mínima de clock'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'maximumBoostSpeed',
+        'Frequência máxima de clock'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'cache',
+        'Cache'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'core',
+        'Core'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'threads',
+        'Threads'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCPU,
+        'graphicsProcessor',
+        'Placa gráfica integrada'
+      ));
+
+      const sortCPU = await transaction.save(filterQuestionsFactory(
+        'sortType',
+        'Ordenar de maneira',
+        true,
+        'cpu'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortCPU,
+        'ASC',
+        'Crescente'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortCPU,
+        'DESC',
+        'Decrescente'
+      ));
+
+      const showPiecesCPU = await transaction.save(filterQuestionsFactory(
+        'showPieces',
+        'Mostrar Peças',
+        true,
+        'cpu'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesCPU,
+        'pluggable',
+        'Encaixáveis'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesCPU,
+        'notPluggable',
+        'Não Encaixáveis'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'chipset',
+        'Selecione um chipset',
+        false,
+        'cpu'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'socket',
+        'Selecione um socket',
+        false,
+        'cpu'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'memorySizeSupport',
+        'Limite máximo de Ram',
+        false,
+        'cpu'
+      ));
+
+      const memorySlotAmountCPU = await transaction.save(filterQuestionsFactory(
+        'memorySlotAmount',
+        'Limite de slots de memória',
+        true,
+        'cpu'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotAmountCPU,
+        '1',
+        '1'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotAmountCPU,
+        '2',
+        '2'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotAmountCPU,
+        '3',
+        '3'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotAmountCPU,
+        '4',
+        '4'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'cpuFrequencies',
+        'Frequências de memória suportadas',
+        false,
+        'cpu'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'maximumBoostSpeed',
+        'Frequência máxima de clock',
+        false,
+        'cpu'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'baseClockSpeed',
+        'Frequência mínima de clock',
+        false,
+        'cpu'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'cache',
+        'Selecione tamanho do cache',
+        false,
+        'cpu'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'core',
+        'Quantidade de núcleos',
+        false,
+        'cpu'
+      ));
+      await transaction.save(filterQuestionsFactory(
+        'threads',
+        'Quantidade de threads',
+        false,
+        'cpu'
+      ));
+      await transaction.save(filterQuestionsFactory(
+        'grapshicProcessor',
+        'Placa gráfica integrada',
+        false,
+        'cpu'
+      ));
+
+      // cooler
+      const orderCooler = await transaction.save(filterQuestionsFactory(
+        'order',
+        'Ordenar por',
+        true,
+        'cooler'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCooler,
+        'name',
+        'Nome'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCooler,
+        'compatibilityCpu',
+        'Selecione um socket'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCooler,
+        'speedFan',
+        'Velocidade do Fan'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderCooler,
+        'fanAirflow',
+        'Máximo fluxo de ar do fan'
+      ));
+
+      const sortCooler = await transaction.save(filterQuestionsFactory(
+        'sortType',
+        'Ordenar de maneira',
+        true,
+        'cooler'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortCooler,
+        'ASC',
+        'Crescente'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortCooler,
+        'DESC',
+        'Decrescente'
+      ));
+
+      const showPiecesCooler = await transaction.save(filterQuestionsFactory(
+        'showPieces',
+        'Mostrar Peças',
+        true,
+        'cooler'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesCooler,
+        'pluggable',
+        'Encaixáveis'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesCooler,
+        'notPluggable',
+        'Não Encaixáveis'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'compatibilityCpu',
+        'Selecione um socket',
+        false,
+        'cooler'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'speedFan',
+        'Velocidade do Fan',
+        false,
+        'cooler'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'fanAirflow',
+        'Máximo fluxo de ar do fan',
+        false,
+        'cooler'
+      ));
+
+      const orderRam = await transaction.save(filterQuestionsFactory(
+        'order',
+        'Ordenar por',
+        true,
+        'ram'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderRam,
+        'name',
+        'Nome'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderRam,
+        'memoryFrequency',
+        'Frequência da Memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderRam,
+        'memorySize',
+        'Tamanho de memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderRam,
+        'memorySlotType',
+        'Tipo de slot'
+      ));
+
+      const sortRam = await transaction.save(filterQuestionsFactory(
+        'sortType',
+        'Ordenar de maneira',
+        true,
+        'ram'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortRam,
+        'ASC',
+        'Crescente'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortRam,
+        'DESC',
+        'Decrescente'
+      ));
+
+      const showPiecesRam = await transaction.save(filterQuestionsFactory(
+        'showPieces',
+        'Mostrar Peças',
+        true,
+        'ram'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesRam,
+        'pluggable',
+        'Encaixáveis'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesRam,
+        'notPluggable',
+        'Não Encaixáveis'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'memoryFrequency',
+        'Frequência da Memória',
+        false,
+        'ram'
+      ));
+
+      const memorySizeRam = await transaction.save(filterQuestionsFactory(
+        'memorySize',
+        'Tamanho de memória',
+        true,
+        'ram'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySizeRam,
+        '8',
+        '8 GB'
+      ));
+
+      const memorySlotTypeRam = await transaction.save(filterQuestionsFactory(
+        'memorySlotType',
+        'Tipo de slot',
+        true,
+        'ram'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotTypeRam,
+        'DDR3',
+        'DDR3'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySlotTypeRam,
+        'DDR4',
+        'DDR4'
+      ));
+
+      // PCIe
+      const orderPCIe = await transaction.save(filterQuestionsFactory(
+        'order',
+        'Ordenar por',
+        true,
+        'pciExpress'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPCIe,
+        'name',
+        'Nome'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPCIe,
+        'baseClock',
+        'Base clock'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPCIe,
+        'boostClock',
+        'Boost clock'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPCIe,
+        'CUDACore',
+        'CUDACore'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPCIe,
+        'memoryInterface',
+        'Interface de memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPCIe,
+        'memorySize',
+        'Tamanho de memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPCIe,
+        'memorySpeed',
+        'Velocidade de memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPCIe,
+        'memoryType',
+        'Tipo de memória'
+      ));
+
+      const sortPCIe = await transaction.save(filterQuestionsFactory(
+        'sortType',
+        'Ordenar de maneira',
+        true,
+        'pciExpress'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortPCIe,
+        'ASC',
+        'Crescente'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortPCIe,
+        'DESC',
+        'Decrescente'
+      ));
+
+      const showPiecesPCIe = await transaction.save(filterQuestionsFactory(
+        'showPieces',
+        'Mostrar Peças',
+        true,
+        'pciExpress'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesPCIe,
+        'pluggable',
+        'Encaixáveis'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesPCIe,
+        'notPluggable',
+        'Não Encaixáveis'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'baseClock',
+        'GPU base clock',
+        false,
+        'pciExpress'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'boostClock',
+        'GPU boost clock',
+        false,
+        'pciExpress'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'CUDACore',
+        'CUDA core',
+        false,
+        'pciExpress'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'memoryInterface',
+        'Interface de memória',
+        false,
+        'pciExpress'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'memorySize',
+        'Tamanho de memória',
+        false,
+        'pciExpress'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'memorySpeed',
+        'Velocidade de memória',
+        false,
+        'pciExpress'
+      ));
+
+      const memoryTypePCIe = await transaction.save(filterQuestionsFactory(
+        'memoryType',
+        'Tipo de memória',
+        true,
+        'pciExpress'
+      ));
+      await transaction.save(filterResponseFactory(
+        memoryTypePCIe,
+        'GDDR6',
+        'GDDR6'
+      ));
+
+      const orderRom = await transaction.save(filterQuestionsFactory(
+        'order',
+        'Ordenar por',
+        true,
+        'rom'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderRom,
+        'name',
+        'Nome'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderRom,
+        'memorySize',
+        'Tamanho da memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderRom,
+        'reading',
+        'Velocidade de leitura'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderRom,
+        'writing',
+        'Velocidade de escrita'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderRom,
+        'rotation',
+        'Rotação(para HDD)'
+      ));
+
+      const sortTypeRom = await transaction.save(filterQuestionsFactory(
+        'sortType',
+        'Ordenar de maneira',
+        true,
+        'rom'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortTypeRom,
+        'ASC',
+        'Crescente'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortTypeRom,
+        'DESC',
+        'Decrescente'
+      ));
+
+      const showPiecesRom = await transaction.save(filterQuestionsFactory(
+        'showPieces',
+        'Mostrar Peças',
+        true,
+        'rom'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesRom,
+        'pluggable',
+        'Encaixáveis'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesRom,
+        'notPluggable',
+        'Não Encaixáveis'
+      ));
+
+      const memorySizeRom = await transaction.save(filterQuestionsFactory(
+        'memorySize',
+        'Tamanho da memória',
+        true,
+        'rom'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySizeRom,
+        '0.520',
+        '0.520 GB'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySizeRom,
+        '1',
+        '1 GB'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'reading',
+        'Velocidade de leitura',
+        false,
+        'rom'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'writing',
+        'Velocidade de escrita',
+        false,
+        'rom'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'rotation',
+        'Rotação(para HDD)',
+        false,
+        'rom'
+      ));
+
+      const orderM2 = await transaction.save(filterQuestionsFactory(
+        'order',
+        'Ordenar por',
+        true,
+        'm2'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderM2,
+        'name',
+        'Nome'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderM2,
+        'format',
+        'Interface'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderM2,
+        'memorySize',
+        'Tamanho de memória'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderM2,
+        'model',
+        'Formato'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderM2,
+        'reading',
+        'Velocidade de leitura'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderM2,
+        'writing',
+        'Velocidade de escrita'
+      ));
+
+      const sortTypeM2 = await transaction.save(filterQuestionsFactory(
+        'sortType',
+        'Ordenar de maneira',
+        true,
+        'm2'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortTypeM2,
+        'ASC',
+        'Crescente'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortTypeM2,
+        'DESC',
+        'Decrescente'
+      ));
+
+      const showPiecesM2 = await transaction.save(filterQuestionsFactory(
+        'showPieces',
+        'Mostrar Peças',
+        true,
+        'm2'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesM2,
+        'pluggable',
+        'Encaixáveis'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesM2,
+        'notPluggable',
+        'Não Encaixáveis'
+      ));
+
+      const formatM2 = await transaction.save(filterQuestionsFactory(
+        'format',
+        'Interface',
+        true,
+        'm2'
+      ));
+      await transaction.save(filterResponseFactory(
+        formatM2,
+        'NVMe',
+        'NVMe'
+      ));
+
+      const memorySizeM2 = await transaction.save(filterQuestionsFactory(
+        'memorySize',
+        'Tamanho de memória',
+        true,
+        'm2'
+      ));
+      await transaction.save(filterResponseFactory(
+        memorySizeM2,
+        '0.250',
+        '0.250 GB'
+      ));
+
+      const modelM2 = await transaction.save(filterQuestionsFactory(
+        'model',
+        'Formato',
+        true,
+        'm2'
+      ));
+      await transaction.save(filterResponseFactory(
+        modelM2,
+        '2280',
+        '2280'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'reading',
+        'Velocidade de leitura',
+        false,
+        'm2'
+      ));
+
+      await transaction.save(filterQuestionsFactory(
+        'writing',
+        'Velocidade de escrita',
+        false,
+        'm2'
+      ));
+
+      const orderPowerSupply = await transaction.save(filterQuestionsFactory(
+        'order',
+        'Ordenar por',
+        true,
+        'powerSupply'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPowerSupply,
+        'name',
+        'Nome'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPowerSupply,
+        'voltage',
+        'Voltagem'
+      ));
+      await transaction.save(filterResponseFactory(
+        orderPowerSupply,
+        'wattage',
+        'Potência'
+      ));
+
+      const sortTypeSupply = await transaction.save(filterQuestionsFactory(
+        'sortType',
+        'Ordenar de maneira',
+        true,
+        'powerSupply'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortTypeSupply,
+        'ASC',
+        'Crescente'
+      ));
+      await transaction.save(filterResponseFactory(
+        sortTypeSupply,
+        'DESC',
+        'Decrescente'
+      ));
+
+      const showPiecesSupply = await transaction.save(filterQuestionsFactory(
+        'showPieces',
+        'Mostrar Peças',
+        true,
+        'powerSupply'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesSupply,
+        'pluggable',
+        'Encaixáveis'
+      ));
+      await transaction.save(filterResponseFactory(
+        showPiecesSupply,
+        'notPluggable',
+        'Não Encaixáveis'
+      ));
+
+      const voltageSupply = await transaction.save(filterQuestionsFactory(
+        'voltage',
+        'Voltagem',
+        true,
+        'powerSupply'
+      ));
+      await transaction.save(filterResponseFactory(
+        voltageSupply,
+        'Bivolt',
+        'Bivolt'
+      ));
+
+      const wattageSupply = await transaction.save(filterQuestionsFactory(
+        'wattage',
+        'Capacidade de saída',
+        true,
+        'powerSupply'
+      ));
+      await transaction.save(filterResponseFactory(
+        wattageSupply,
+        '200',
+        '200 W'
+      ));
+      await transaction.save(filterResponseFactory(
+        wattageSupply,
+        '400',
+        '400 W'
+      ));
       const motherPremium = await transaction.save(motherFactory(
         'motherBoard Premium',
         'motherBoard',

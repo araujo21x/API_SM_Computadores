@@ -42,6 +42,9 @@ class Ram {
   @Column({ nullable: false })
   dropImageId: string;
 
+  @Column({ nullable: false, default: 4 })
+  quantity: number;
+
   @UpdateDateColumn()
   updatedAt: Date;
 
