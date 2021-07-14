@@ -69,6 +69,36 @@ export const ResponseMessages: any = {
     en: '',
     es: ''
   },
+  '003-008': {
+    ptBR: 'Necessário conectar o cooler na placa-mãe.',
+    en: '',
+    es: ''
+  },
+  '003-009': {
+    ptBR: 'Necessário conectar a fonte de energia na placa-mãe.',
+    en: '',
+    es: ''
+  },
+  '003-010': {
+    ptBR: 'Necessário conectar a fonte de energia no leitor de DVD.',
+    en: '',
+    es: ''
+  },
+  '003-011': {
+    ptBR: 'Necessário conectar a fonte de energia na primeira memória ROM.',
+    en: '',
+    es: ''
+  },
+  '003-012': {
+    ptBR: 'Necessário conectar a fonte de energia na segunda memória ROM.',
+    en: '',
+    es: ''
+  },
+  '003-013': {
+    ptBR: 'Faltou conectar o leitor de DVD ou alguma memória ROM na placa-mãe.',
+    en: '',
+    es: ''
+  },
   // Filter
   '004-001': {
     ptBR: 'Formato de um dos campos enviado errado.',

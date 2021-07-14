@@ -7,6 +7,18 @@ import generateName from '../../helpers/generateNames';
 import { ResponseCode } from '../../helpers/response/responseCode';
 
 class FinishHelper {
+  partsTypes: string[] = [
+    'motherBoard',
+    'cpu',
+    'cooler',
+    'ram',
+    'rom',
+    'm2',
+    'pciExpress',
+    'powerSupply',
+    'recorder'
+  ];
+
   public cratePDF (req: Request): Promise<string> {
     return new Promise((resolve: any, reject: any) => {
       const dir: string = path.resolve(__dirname,
@@ -31,6 +43,44 @@ class FinishHelper {
     if (!parts.cooler) throw new Error(ResponseCode.E_003_005);
     if (parts.ram.length === 0) throw new Error(ResponseCode.E_003_006);
     if (!parts.powerSupply) throw new Error(ResponseCode.E_003_007);
+    if (!parts.cable.cooler) throw new Error(ResponseCode.E_003_008);
+    if (!parts.cable.powerSupply) throw new Error(ResponseCode.E_003_009);
+    if (parts.recorder) { if (!parts.cable.record) throw new Error(ResponseCode.E_003_010); }
+
+    parts.rom.forEach((element:any) => {
+      const attributes = element.div === 'rom_1' ? 'rom1' : 'rom2';
+      if (!parts.cable[attributes]) {
+        if (attributes === 'rom1') {
+          throw new Error(ResponseCode.E_003_011);
+        }
+        if (attributes === 'rom2') {
+          throw new Error(ResponseCode.E_003_012);
+        }
+      }
+    });
+
+    if (!this.verifySata(parts)) throw new Error(ResponseCode.E_003_013);
+  }
+
+  public errorReport (body:any): any {
+    // const { motherBoard, cpu, cooler, powerSupply } = body;
+    // const answer: any = { ...error };
+
+    return 'answer';
+  }
+
+  private verifySata (parts:any):boolean {
+    const { recorder, rom } = parts;
+    let undSata:number = 0;
+    let undPartsSata:number = 0;
+
+    for (let x = 1; x < 5; x++) {
+      if (parts[`sata${x}`]) undSata = undSata++;
+    }
+    if (recorder)undPartsSata = undPartsSata++;
+    undPartsSata = undPartsSata + rom.length;
+
+    return undSata < undPartsSata;
   }
 
   private createTemplate (parts: any): Promise<string> {
