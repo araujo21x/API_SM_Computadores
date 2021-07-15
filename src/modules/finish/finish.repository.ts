@@ -11,10 +11,17 @@ class FinishRepository {
   }
 
   private async sendPDV (req: Request): Promise<string> {
-    helper.isValidParts(req.body);
+    let errorReport: any;
+
+    if (req.body.evaluativeMode) {
+      errorReport = helper.errorReport(req.body);
+    } else {
+      helper.isValidParts(req.body);
+      errorReport = helper.generateError();
+    }
 
     try {
-      const dir:string = await helper.cratePDF(req);
+      const dir: string = await helper.cratePDF(req, errorReport);
 
       setTimeout(() => {
         fs.unlinkSync(dir);
