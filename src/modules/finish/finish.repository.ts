@@ -17,6 +17,7 @@ class FinishRepository {
       errorReport = helper.errorReport(req.body);
     } else {
       helper.isValidParts(req.body);
+      errorReport = helper.generateError();
     }
 
     try {

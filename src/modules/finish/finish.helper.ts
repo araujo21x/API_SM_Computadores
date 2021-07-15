@@ -19,7 +19,7 @@ class FinishHelper {
     'recorder'
   ];
 
-  public cratePDF (req: Request, errorsReported:any): Promise<string> {
+  public cratePDF (req: Request, errorsReported: any): Promise<string> {
     return new Promise((resolve: any, reject: any) => {
       const dir: string = path.resolve(__dirname,
         '..', '..', 'tmp', 'pdf', `${generateName()}.pdf`
@@ -119,6 +119,22 @@ class FinishHelper {
     return answer;
   }
 
+  public generateError (): any {
+    return {
+      motherBoard: null,
+      cpu: null,
+      cooler: null,
+      cableCooler: null,
+      ram: [],
+      powerSupply: null,
+      cablePowerSupply: null,
+      rom: null,
+      cableRom: [],
+      cableRecorder: null,
+      cableSata: null
+    };
+  }
+
   private verifySata (parts: any): boolean {
     const { recorder, rom, cable } = parts;
     if (recorder || rom.length > 0) {
@@ -137,7 +153,7 @@ class FinishHelper {
     }
   }
 
-  private createTemplate (parts: any, errorsReported:any): Promise<string> {
+  private createTemplate (parts: any, errorsReported: any): Promise<string> {
     return new Promise<string>((resolve: any, reject: any) => {
       ejs.renderFile(
         path.resolve(__dirname, '..', '..', '..', 'template', 'templateFinish.ejs'),
