@@ -19,10 +19,8 @@ class FinishRepository {
       helper.isValidParts(req.body);
     }
 
-    console.log(errorReport);
-
     try {
-      const dir: string = await helper.cratePDF(req);
+      const dir: string = await helper.cratePDF(req, errorReport);
 
       setTimeout(() => {
         fs.unlinkSync(dir);
