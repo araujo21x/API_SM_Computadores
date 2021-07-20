@@ -22,14 +22,14 @@ class FinishRepository {
 
     try {
       const dir: string = await helper.cratePDF(req, errorReport);
-      const newDir:string = await helper.generatingPdfPassword(dir);
+      // const newDir:string = await helper.generatingPdfPassword(dir);
 
       setTimeout(() => {
         fs.unlinkSync(dir);
-        fs.unlinkSync(newDir);
+        // fs.unlinkSync(newDir);
       }, 8000);
 
-      return newDir;
+      return dir;
     } catch (err) {
       if (err.message === 'E_003_002') { throw new Error(ResponseCode.E_003_002); }
       throw new Error(ResponseCode.E_003_001);
