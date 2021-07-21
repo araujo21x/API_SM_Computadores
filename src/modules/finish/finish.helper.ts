@@ -6,7 +6,6 @@ import ejs from 'ejs';
 import generateName from '../../helpers/generateNames';
 import { ResponseCode } from '../../helpers/response/responseCode';
 
-import { exec } from 'child_process';
 class FinishHelper {
   partsTypes: string[] = [
     'motherBoard',
@@ -34,22 +33,6 @@ class FinishHelper {
           });
       }).catch(err => {
         reject(err);
-      });
-    });
-  }
-
-  public generatingPdfPassword (dir: string): Promise<string> {
-    return new Promise((resolve: any, reject: any) => {
-      const newDir: string = `${dir.slice(0, -4)}-encry.pdf`;
-      const cmd: string = `qpdf --encrypt test20 test 40 -- ${dir} ${newDir}`;
-
-      exec(cmd, function (err) {
-        if (err) {
-          console.error('Error occured: ' + err);
-          reject(new Error('Deu ruim'));
-        } else {
-          resolve(newDir);
-        }
       });
     });
   }
