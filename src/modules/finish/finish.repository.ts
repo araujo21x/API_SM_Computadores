@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import fs from 'fs';
 import helper from './finish.helper';
+import mailer, { emailMessage } from '../../helpers/mailer';
 
 import { ResponseCode } from '../../helpers/response/responseCode';
 
@@ -12,6 +13,7 @@ class FinishRepository {
 
   private async sendPDV (req: Request): Promise<string> {
     let errorReport: any;
+    let sketchDir: string | undefined;
 
     if (req.body.evaluativeMode) {
       errorReport = helper.errorReport(req.body);
@@ -22,14 +24,18 @@ class FinishRepository {
 
     try {
       const dir: string = await helper.cratePDF(req, errorReport);
-      // const newDir:string = await helper.generatingPdfPassword(dir);
+
+      if (req.body.evaluativeMode) {
+        await mailer.sendMail(emailMessage(dir, req.body.studentName));
+        errorReport = helper.generateError();
+        sketchDir = await helper.cratePDF(req, errorReport);
+      }
 
       setTimeout(() => {
         fs.unlinkSync(dir);
-        // fs.unlinkSync(newDir);
+        if (sketchDir) fs.unlinkSync(sketchDir);
       }, 8000);
-
-      return dir;
+      return sketchDir ?? dir;
     } catch (err) {
       if (err.message === 'E_003_002') { throw new Error(ResponseCode.E_003_002); }
       throw new Error(ResponseCode.E_003_001);
