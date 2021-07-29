@@ -2,25 +2,25 @@ import { config } from 'dotenv';
 import { getConnection } from 'typeorm';
 import startConnection from '../src/database/index';
 
-import Mother from '../src/database/entity/mother.entity';
-import M2Socket from '../src/database/entity/m2Socket.entity';
-import M2SocketTypes from '../src/database/entity/m2SocketType.entity';
-import PcieSocket from '../src/database/entity/PcieSocket.entity';
-import Motherfrequency from '../src/database/entity/motherFrequency.entity';
-import GridMother from '../src/database/entity/gridMother.entity';
-import PieceGrid from '../src/database/entity/pieceGrid.entity';
-import Cooler from '../src/database/entity/cooler.entity';
-import CoolerCompatibility from '../src/database/entity/coolerCompatibility.entity';
+// import Mother from '../src/database/entity/mother.entity';
+// import M2Socket from '../src/database/entity/m2Socket.entity';
+// import M2SocketTypes from '../src/database/entity/m2SocketType.entity';
+// import PcieSocket from '../src/database/entity/PcieSocket.entity';
+// import Motherfrequency from '../src/database/entity/motherFrequency.entity';
+// import GridMother from '../src/database/entity/gridMother.entity';
+// import PieceGrid from '../src/database/entity/pieceGrid.entity';
+// import Cooler from '../src/database/entity/cooler.entity';
+// import CoolerCompatibility from '../src/database/entity/coolerCompatibility.entity';
 
-import Cpu from '../src/database/entity/cpu.entity';
-import CpuFrequency from '../src/database/entity/cpuFrequency.entity';
+// import Cpu from '../src/database/entity/cpu.entity';
+// import CpuFrequency from '../src/database/entity/cpuFrequency.entity';
 
-// import Pcie from '../src/database/entity/pcie.entity';
-import Psu from '../src/database/entity/psu.entity';
-// import M2 from '../src/database/entity/m2.entity';
-// import Rom from '../src/database/entity/rom.entity';
-// import Recorder from '../src/database/entity/recorder.entity';
-import Ram from '../src/database/entity/ram.entity';
+// // import Pcie from '../src/database/entity/pcie.entity';
+// import Psu from '../src/database/entity/psu.entity';
+// // import M2 from '../src/database/entity/m2.entity';
+// // import Rom from '../src/database/entity/rom.entity';
+// // import Recorder from '../src/database/entity/recorder.entity';
+// import Ram from '../src/database/entity/ram.entity';
 // import FilterQuestions from '../src/database/entity/filterQuestions.entity';
 // import FilterResponse from '../src/database/entity/filterResponse.entity';
 
@@ -51,158 +51,158 @@ config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env' });
 //   return response;
 // };
 
-const motherFactory = (
-  name: string,
-  type: string,
-  image: string,
-  imageId: string,
-  dropImage: string,
-  dropImageId: string,
-  socket: string,
-  chipset: string,
-  memorySlotAmount: number,
-  memorySizeSupport: number,
-  memorySlotType: string,
-  TDP: number,
-  hasSocketM2: boolean
-): Mother => {
-  const mother: Mother = new Mother();
-  mother.name = name;
-  mother.type = type;
-  mother.image = image;
-  mother.imageId = imageId;
-  mother.dropImage = dropImage;
-  mother.dropImageId = dropImageId;
-  mother.socket = socket;
-  mother.chipset = chipset;
-  mother.memorySlotAmount = memorySlotAmount;
-  mother.memorySizeSupport = memorySizeSupport;
-  mother.memorySlotType = memorySlotType;
-  mother.TDP = TDP;
-  mother.hasSocketM2 = hasSocketM2;
-  return mother;
-};
-const m2SocketFactory = (motherBoard: Mother): M2Socket => {
-  const m2Socket: M2Socket = new M2Socket();
-  m2Socket.mother = motherBoard;
-  return m2Socket;
-};
-const m2SocketTypesFactory = (m2Socket: M2Socket): M2SocketTypes => {
-  const m2SocketTypes: M2SocketTypes = new M2SocketTypes();
-  m2SocketTypes.m2Socker = m2Socket;
-  m2SocketTypes.type = 'NVMe';
-  return m2SocketTypes;
-};
-const pcieSocketFactory = (motherBoard: Mother, type: string, version: number): PcieSocket => {
-  const pcieSocket: PcieSocket = new PcieSocket();
-  pcieSocket.mother = motherBoard;
-  pcieSocket.type = type;
-  pcieSocket.version = version;
-  return pcieSocket;
-};
-const motherFrequencyFactory = (motherBoard: Mother, frequency: number): Motherfrequency => {
-  const motherFrequency: Motherfrequency = new Motherfrequency();
-  motherFrequency.mother = motherBoard;
-  motherFrequency.frequency = frequency;
-  return motherFrequency;
-};
-const gridMotherFactory = (mode: string, motherBoard: Mother): GridMother => {
-  const gridMother: GridMother = new GridMother();
-  gridMother.mode = mode;
-  gridMother.mother = motherBoard;
-  return gridMother;
-};
-const pieceGridFactory = (
-  gridMother: GridMother,
-  type: string,
-  gridColumn: string,
-  gridRow: string,
-  div?: string
-): PieceGrid => {
-  const pieceGrid: PieceGrid = new PieceGrid();
-  pieceGrid.gridMother = gridMother;
-  pieceGrid.type = type;
-  pieceGrid.gridColumn = gridColumn;
-  pieceGrid.gridRow = gridRow;
-  pieceGrid.div = div!;
-  return pieceGrid;
-};
+// const motherFactory = (
+//   name: string,
+//   type: string,
+//   image: string,
+//   imageId: string,
+//   dropImage: string,
+//   dropImageId: string,
+//   socket: string,
+//   chipset: string,
+//   memorySlotAmount: number,
+//   memorySizeSupport: number,
+//   memorySlotType: string,
+//   TDP: number,
+//   hasSocketM2: boolean
+// ): Mother => {
+//   const mother: Mother = new Mother();
+//   mother.name = name;
+//   mother.type = type;
+//   mother.image = image;
+//   mother.imageId = imageId;
+//   mother.dropImage = dropImage;
+//   mother.dropImageId = dropImageId;
+//   mother.socket = socket;
+//   mother.chipset = chipset;
+//   mother.memorySlotAmount = memorySlotAmount;
+//   mother.memorySizeSupport = memorySizeSupport;
+//   mother.memorySlotType = memorySlotType;
+//   mother.TDP = TDP;
+//   mother.hasSocketM2 = hasSocketM2;
+//   return mother;
+// };
+// const m2SocketFactory = (motherBoard: Mother): M2Socket => {
+//   const m2Socket: M2Socket = new M2Socket();
+//   m2Socket.mother = motherBoard;
+//   return m2Socket;
+// };
+// const m2SocketTypesFactory = (m2Socket: M2Socket): M2SocketTypes => {
+//   const m2SocketTypes: M2SocketTypes = new M2SocketTypes();
+//   m2SocketTypes.m2Socker = m2Socket;
+//   m2SocketTypes.type = 'NVMe';
+//   return m2SocketTypes;
+// };
+// const pcieSocketFactory = (motherBoard: Mother, type: string, version: number): PcieSocket => {
+//   const pcieSocket: PcieSocket = new PcieSocket();
+//   pcieSocket.mother = motherBoard;
+//   pcieSocket.type = type;
+//   pcieSocket.version = version;
+//   return pcieSocket;
+// };
+// const motherFrequencyFactory = (motherBoard: Mother, frequency: number): Motherfrequency => {
+//   const motherFrequency: Motherfrequency = new Motherfrequency();
+//   motherFrequency.mother = motherBoard;
+//   motherFrequency.frequency = frequency;
+//   return motherFrequency;
+// };
+// const gridMotherFactory = (mode: string, motherBoard: Mother): GridMother => {
+//   const gridMother: GridMother = new GridMother();
+//   gridMother.mode = mode;
+//   gridMother.mother = motherBoard;
+//   return gridMother;
+// };
+// const pieceGridFactory = (
+//   gridMother: GridMother,
+//   type: string,
+//   gridColumn: string,
+//   gridRow: string,
+//   div?: string
+// ): PieceGrid => {
+//   const pieceGrid: PieceGrid = new PieceGrid();
+//   pieceGrid.gridMother = gridMother;
+//   pieceGrid.type = type;
+//   pieceGrid.gridColumn = gridColumn;
+//   pieceGrid.gridRow = gridRow;
+//   pieceGrid.div = div!;
+//   return pieceGrid;
+// };
 
-const coolerFactory = (
-  name: string,
-  type: string,
-  speedFan: number,
-  fanAirflow: number,
-  TDP: number,
-  image: string,
-  imageId: string,
-  dropImage: string,
-  dropImageId: string
-): Cooler => {
-  const cooler: Cooler = new Cooler();
-  cooler.name = name;
-  cooler.type = type;
-  cooler.speedFan = speedFan;
-  cooler.fanAirflow = fanAirflow;
-  cooler.TDP = TDP;
-  cooler.image = image;
-  cooler.imageId = imageId;
-  cooler.dropImage = dropImage;
-  cooler.dropImageId = dropImageId;
-  return cooler;
-};
-const coolerFrequencyFactory = (cooler: Cooler, compatibilityCpu: string): CoolerCompatibility => {
-  const coolerFrequency: CoolerCompatibility = new CoolerCompatibility();
-  coolerFrequency.cooler = cooler;
-  coolerFrequency.compatibilityCpu = compatibilityCpu;
-  return coolerFrequency;
-};
+// const coolerFactory = (
+//   name: string,
+//   type: string,
+//   speedFan: number,
+//   fanAirflow: number,
+//   TDP: number,
+//   image: string,
+//   imageId: string,
+//   dropImage: string,
+//   dropImageId: string
+// ): Cooler => {
+//   const cooler: Cooler = new Cooler();
+//   cooler.name = name;
+//   cooler.type = type;
+//   cooler.speedFan = speedFan;
+//   cooler.fanAirflow = fanAirflow;
+//   cooler.TDP = TDP;
+//   cooler.image = image;
+//   cooler.imageId = imageId;
+//   cooler.dropImage = dropImage;
+//   cooler.dropImageId = dropImageId;
+//   return cooler;
+// };
+// const coolerFrequencyFactory = (cooler: Cooler, compatibilityCpu: string): CoolerCompatibility => {
+//   const coolerFrequency: CoolerCompatibility = new CoolerCompatibility();
+//   coolerFrequency.cooler = cooler;
+//   coolerFrequency.compatibilityCpu = compatibilityCpu;
+//   return coolerFrequency;
+// };
 
-const cpuFactory = (
-  name: string,
-  type: string,
-  image: string,
-  imageId: string,
-  dropImage: string,
-  dropImageId: string,
-  socket: string,
-  chipset: string,
-  threads: number,
-  core: number,
-  baseClockSpeed: number,
-  maximumBoostSpeed: number,
-  cache: number,
-  graphicsProcessor: string,
-  memorySupportAmountSlot: number,
-  memorySizeSupport: number,
-  TDP: number
-): Cpu => {
-  const cpu: Cpu = new Cpu();
-  cpu.name = name;
-  cpu.type = type;
-  cpu.image = image;
-  cpu.imageId = imageId;
-  cpu.dropImage = dropImage;
-  cpu.dropImageId = dropImageId;
-  cpu.socket = socket;
-  cpu.chipset = chipset;
-  cpu.threads = threads;
-  cpu.core = core;
-  cpu.baseClockSpeed = baseClockSpeed;
-  cpu.maximumBoostSpeed = maximumBoostSpeed;
-  cpu.cache = cache;
-  cpu.graphicsProcessor = graphicsProcessor;
-  cpu.memorySupportAmountSlot = memorySupportAmountSlot;
-  cpu.memorySizeSupport = memorySizeSupport;
-  cpu.TDP = TDP;
-  return cpu;
-};
-const cpuFrequencyFactory = (cpu: Cpu, frequency: number): CpuFrequency => {
-  const cpuFrequency: CpuFrequency = new CpuFrequency();
-  cpuFrequency.cpu = cpu;
-  cpuFrequency.frequency = frequency;
-  return cpuFrequency;
-};
+// const cpuFactory = (
+//   name: string,
+//   type: string,
+//   image: string,
+//   imageId: string,
+//   dropImage: string,
+//   dropImageId: string,
+//   socket: string,
+//   chipset: string,
+//   threads: number,
+//   core: number,
+//   baseClockSpeed: number,
+//   maximumBoostSpeed: number,
+//   cache: number,
+//   graphicsProcessor: string,
+//   memorySupportAmountSlot: number,
+//   memorySizeSupport: number,
+//   TDP: number
+// ): Cpu => {
+//   const cpu: Cpu = new Cpu();
+//   cpu.name = name;
+//   cpu.type = type;
+//   cpu.image = image;
+//   cpu.imageId = imageId;
+//   cpu.dropImage = dropImage;
+//   cpu.dropImageId = dropImageId;
+//   cpu.socket = socket;
+//   cpu.chipset = chipset;
+//   cpu.threads = threads;
+//   cpu.core = core;
+//   cpu.baseClockSpeed = baseClockSpeed;
+//   cpu.maximumBoostSpeed = maximumBoostSpeed;
+//   cpu.cache = cache;
+//   cpu.graphicsProcessor = graphicsProcessor;
+//   cpu.memorySupportAmountSlot = memorySupportAmountSlot;
+//   cpu.memorySizeSupport = memorySizeSupport;
+//   cpu.TDP = TDP;
+//   return cpu;
+// };
+// const cpuFrequencyFactory = (cpu: Cpu, frequency: number): CpuFrequency => {
+//   const cpuFrequency: CpuFrequency = new CpuFrequency();
+//   cpuFrequency.cpu = cpu;
+//   cpuFrequency.frequency = frequency;
+//   return cpuFrequency;
+// };
 // const pcieFactory = (
 //   name: string,
 //   type: string,
@@ -240,29 +240,29 @@ const cpuFrequencyFactory = (cpu: Cpu, frequency: number): CpuFrequency => {
 //   pcie.dropImageId = dropImageId;
 //   return pcie;
 // };
-const psuFactory = (
-  name: string,
-  type: string,
-  wattage: number,
-  voltage: string,
-  TDP: number,
-  image: string,
-  imageId: string,
-  dropImage: string,
-  dropImageId: string
-): Psu => {
-  const psu: Psu = new Psu();
-  psu.name = name;
-  psu.type = type;
-  psu.wattage = wattage;
-  psu.voltage = voltage;
-  psu.TDP = TDP;
-  psu.image = image;
-  psu.imageId = imageId;
-  psu.dropImage = dropImage;
-  psu.dropImageId = dropImageId;
-  return psu;
-};
+// const psuFactory = (
+//   name: string,
+//   type: string,
+//   wattage: number,
+//   voltage: string,
+//   TDP: number,
+//   image: string,
+//   imageId: string,
+//   dropImage: string,
+//   dropImageId: string
+// ): Psu => {
+//   const psu: Psu = new Psu();
+//   psu.name = name;
+//   psu.type = type;
+//   psu.wattage = wattage;
+//   psu.voltage = voltage;
+//   psu.TDP = TDP;
+//   psu.image = image;
+//   psu.imageId = imageId;
+//   psu.dropImage = dropImage;
+//   psu.dropImageId = dropImageId;
+//   return psu;
+// };
 // const m2Factory = (
 //   name: string,
 //   type: string,
@@ -338,31 +338,31 @@ const psuFactory = (
 //   recorder.dropImageId = dropImageId;
 //   return recorder;
 // };
-const ramFactory = (
-  name: string,
-  type: string,
-  memorySlotType: string,
-  memoryFrequency: number,
-  memorySize: number,
-  TDP: number,
-  image: string,
-  imageId: string,
-  dropImage: string,
-  dropImageId: string
-): Ram => {
-  const ram: Ram = new Ram();
-  ram.name = name;
-  ram.type = type;
-  ram.memorySlotType = memorySlotType;
-  ram.memoryFrequency = memoryFrequency;
-  ram.memorySize = memorySize;
-  ram.TDP = TDP;
-  ram.image = image;
-  ram.imageId = imageId;
-  ram.dropImage = dropImage;
-  ram.dropImageId = dropImageId;
-  return ram;
-};
+// const ramFactory = (
+//   name: string,
+//   type: string,
+//   memorySlotType: string,
+//   memoryFrequency: number,
+//   memorySize: number,
+//   TDP: number,
+//   image: string,
+//   imageId: string,
+//   dropImage: string,
+//   dropImageId: string
+// ): Ram => {
+//   const ram: Ram = new Ram();
+//   ram.name = name;
+//   ram.type = type;
+//   ram.memorySlotType = memorySlotType;
+//   ram.memoryFrequency = memoryFrequency;
+//   ram.memorySize = memorySize;
+//   ram.TDP = TDP;
+//   ram.image = image;
+//   ram.imageId = imageId;
+//   ram.dropImage = dropImage;
+//   ram.dropImageId = dropImageId;
+//   return ram;
+// };
 
 async function Dump () {
   try {
@@ -1666,562 +1666,562 @@ async function Dump () {
 
       // new Parts v2 ------------------------------------
 
-      const motherPremiumGame = await transaction.save(motherFactory(
-        'Premium Game',
-        'motherBoard',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-01_zpy9en.png',
-        'PMAE_CINZA_4_RAM-01_zpy9en',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-01_zpy9en.png',
-        'PMAE_CINZA_4_RAM-01_zpy9en',
-        'LGA1151',
-        'H310',
-        4,
-        128,
-        'DDR4',
-        125,
-        true
-      ));
+      // const motherPremiumGame = await transaction.save(motherFactory(
+      //   'Premium Game',
+      //   'motherBoard',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-01_zpy9en.png',
+      //   'PMAE_CINZA_4_RAM-01_zpy9en',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-01_zpy9en.png',
+      //   'PMAE_CINZA_4_RAM-01_zpy9en',
+      //   'LGA1151',
+      //   'H310',
+      //   4,
+      //   128,
+      //   'DDR4',
+      //   125,
+      //   true
+      // ));
 
-      const m2SockerMPG = await transaction.save(m2SocketFactory(motherPremiumGame));
-      await transaction.save(m2SocketTypesFactory(m2SockerMPG));
+      // const m2SockerMPG = await transaction.save(m2SocketFactory(motherPremiumGame));
+      // await transaction.save(m2SocketTypesFactory(m2SockerMPG));
 
-      await transaction.save(pcieSocketFactory(motherPremiumGame, 'x16', 3));
-      await transaction.save(pcieSocketFactory(motherPremiumGame, 'x16', 2));
-      await transaction.save(pcieSocketFactory(motherPremiumGame, 'x1', 2));
+      // await transaction.save(pcieSocketFactory(motherPremiumGame, 'x16', 3));
+      // await transaction.save(pcieSocketFactory(motherPremiumGame, 'x16', 2));
+      // await transaction.save(pcieSocketFactory(motherPremiumGame, 'x1', 2));
 
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 4266));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 4133));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 4000));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 3866));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 3800));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 3733));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 3666));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 3466));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 3400));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 3333));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 3200));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 3000));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 2800));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 2666));
-      await transaction.save(motherFrequencyFactory(motherPremiumGame, 2400));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 4266));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 4133));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 4000));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 3866));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 3800));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 3733));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 3666));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 3466));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 3400));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 3333));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 3200));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 3000));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 2800));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 2666));
+      // await transaction.save(motherFrequencyFactory(motherPremiumGame, 2400));
 
-      const premiumGameModeMother = await transaction.save(gridMotherFactory('motherboard', motherPremiumGame));
-      const premiumGameModePC = await transaction.save(gridMotherFactory('pc', motherPremiumGame));
+      // const premiumGameModeMother = await transaction.save(gridMotherFactory('motherboard', motherPremiumGame));
+      // const premiumGameModePC = await transaction.save(gridMotherFactory('pc', motherPremiumGame));
 
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'cpu', '87 / 113', '39 / 75'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'cooler', '80 / 121', '29 / 85'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'm2', '69 / 110', '132 / 151'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '133/137', '17/99', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_3'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_4'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_3'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_4'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'cpu', '87 / 113', '39 / 75'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'cooler', '80 / 121', '29 / 85'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'm2', '69 / 110', '132 / 151'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '133/137', '17/99', 'ram_1'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_3'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_4'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_3'));
+      // await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_4'));
 
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'cpu', '63 / 97', '39 / 75'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'cooler', '51 / 107', '27 / 85'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'm2', '37/ 85', '133 / 150'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'pciExpress1', '32 / 89', '184 / 190'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_3'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_4'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_3'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_4'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'cpu', '63 / 97', '39 / 75'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'cooler', '51 / 107', '27 / 85'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'm2', '37/ 85', '133 / 150'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'pciExpress1', '32 / 89', '184 / 190'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_3'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_4'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_3'));
+      // await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_4'));
 
-      // FDMGame
-      const motherFMDGame = await transaction.save(motherFactory(
-        'FMD Game',
-        'motherBoard',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-01_zpy9en.png',
-        'PMAE_CINZA_4_RAM-01_zpy9en',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-01_zpy9en.png',
-        'PMAE_CINZA_4_RAM-01_zpy9en',
-        'AM4',
-        'A520',
-        4,
-        128,
-        'DDR4',
-        125,
-        true
-      ));
+      // // FDMGame
+      // const motherFMDGame = await transaction.save(motherFactory(
+      //   'FMD Game',
+      //   'motherBoard',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-01_zpy9en.png',
+      //   'PMAE_CINZA_4_RAM-01_zpy9en',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-01_zpy9en.png',
+      //   'PMAE_CINZA_4_RAM-01_zpy9en',
+      //   'AM4',
+      //   'A520',
+      //   4,
+      //   128,
+      //   'DDR4',
+      //   125,
+      //   true
+      // ));
 
-      const m2SockerMFMDG = await transaction.save(m2SocketFactory(motherFMDGame));
-      await transaction.save(m2SocketTypesFactory(m2SockerMFMDG));
+      // const m2SockerMFMDG = await transaction.save(m2SocketFactory(motherFMDGame));
+      // await transaction.save(m2SocketTypesFactory(m2SockerMFMDG));
 
-      await transaction.save(pcieSocketFactory(motherFMDGame, 'x16', 3));
-      await transaction.save(pcieSocketFactory(motherFMDGame, 'x16', 2));
-      await transaction.save(pcieSocketFactory(motherFMDGame, 'x1', 2));
+      // await transaction.save(pcieSocketFactory(motherFMDGame, 'x16', 3));
+      // await transaction.save(pcieSocketFactory(motherFMDGame, 'x16', 2));
+      // await transaction.save(pcieSocketFactory(motherFMDGame, 'x1', 2));
 
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 4266));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 4133));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 4000));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 3866));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 3800));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 3733));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 3666));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 3466));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 3400));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 3333));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 3200));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 3000));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 2800));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 2666));
-      await transaction.save(motherFrequencyFactory(motherFMDGame, 2400));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 4266));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 4133));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 4000));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 3866));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 3800));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 3733));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 3666));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 3466));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 3400));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 3333));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 3200));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 3000));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 2800));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 2666));
+      // await transaction.save(motherFrequencyFactory(motherFMDGame, 2400));
 
-      const FMDGameModeMother = await transaction.save(gridMotherFactory('motherboard', motherFMDGame));
-      const FMDGameModePC = await transaction.save(gridMotherFactory('pc', motherFMDGame));
+      // const FMDGameModeMother = await transaction.save(gridMotherFactory('motherboard', motherFMDGame));
+      // const FMDGameModePC = await transaction.save(gridMotherFactory('pc', motherFMDGame));
 
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'cpu', '87 / 113', '39 / 75'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'cooler', '80 / 121', '29 / 85'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'm2', '69 / 110', '132 / 151'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '133/137', '17/99', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_3'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_4'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_3'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_4'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'cpu', '87 / 113', '39 / 75'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'cooler', '80 / 121', '29 / 85'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'm2', '69 / 110', '132 / 151'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '133/137', '17/99', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_3'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_4'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_3'));
+      // await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_4'));
 
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'cpu', '63 / 97', '39 / 75'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'cooler', '51 / 107', '27 / 85'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'm2', '37/ 85', '133 / 150'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'pciExpress1', '32 / 89', '184 / 190'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_3'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_4'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_3'));
-      await transaction.save(pieceGridFactory(FMDGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_4'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'cpu', '63 / 97', '39 / 75'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'cooler', '51 / 107', '27 / 85'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'm2', '37/ 85', '133 / 150'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'pciExpress1', '32 / 89', '184 / 190'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_3'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_4'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_3'));
+      // await transaction.save(pieceGridFactory(FMDGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_4'));
 
-      // fdm premium
-      const motherFMDPremium = await transaction.save(motherFactory(
-        'FMD premium',
-        'motherBoard',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162662/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-02-01_d7gspm.png',
-        'PMAE_CINZA_4_RAM-02-01_d7gspm',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162662/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-02-01_d7gspm.png',
-        'PMAE_CINZA_4_RAM-02-01_d7gspm',
-        'AM4',
-        'A320',
-        2,
-        32,
-        'DDR4',
-        125,
-        true
-      ));
+      // // fdm premium
+      // const motherFMDPremium = await transaction.save(motherFactory(
+      //   'FMD premium',
+      //   'motherBoard',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162662/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-02-01_d7gspm.png',
+      //   'PMAE_CINZA_4_RAM-02-01_d7gspm',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162662/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-02-01_d7gspm.png',
+      //   'PMAE_CINZA_4_RAM-02-01_d7gspm',
+      //   'AM4',
+      //   'A320',
+      //   2,
+      //   32,
+      //   'DDR4',
+      //   125,
+      //   true
+      // ));
 
-      const m2SockerFMDPremium = await transaction.save(m2SocketFactory(motherFMDPremium));
-      await transaction.save(m2SocketTypesFactory(m2SockerFMDPremium));
+      // const m2SockerFMDPremium = await transaction.save(m2SocketFactory(motherFMDPremium));
+      // await transaction.save(m2SocketTypesFactory(m2SockerFMDPremium));
 
-      await transaction.save(pcieSocketFactory(motherFMDPremium, 'x16', 3));
-      await transaction.save(pcieSocketFactory(motherFMDPremium, 'x16', 2));
-      await transaction.save(pcieSocketFactory(motherFMDPremium, 'x1', 2));
+      // await transaction.save(pcieSocketFactory(motherFMDPremium, 'x16', 3));
+      // await transaction.save(pcieSocketFactory(motherFMDPremium, 'x16', 2));
+      // await transaction.save(pcieSocketFactory(motherFMDPremium, 'x1', 2));
 
-      await transaction.save(motherFrequencyFactory(motherFMDPremium, 3200));
-      await transaction.save(motherFrequencyFactory(motherFMDPremium, 2933));
-      await transaction.save(motherFrequencyFactory(motherFMDPremium, 2666));
-      await transaction.save(motherFrequencyFactory(motherFMDPremium, 2400));
-      await transaction.save(motherFrequencyFactory(motherFMDPremium, 2133));
+      // await transaction.save(motherFrequencyFactory(motherFMDPremium, 3200));
+      // await transaction.save(motherFrequencyFactory(motherFMDPremium, 2933));
+      // await transaction.save(motherFrequencyFactory(motherFMDPremium, 2666));
+      // await transaction.save(motherFrequencyFactory(motherFMDPremium, 2400));
+      // await transaction.save(motherFrequencyFactory(motherFMDPremium, 2133));
 
-      const FMDPremiumModeMother = await transaction.save(gridMotherFactory('motherboard', motherFMDPremium));
-      const FMDPremiumModePC = await transaction.save(gridMotherFactory('pc', motherFMDPremium));
+      // const FMDPremiumModeMother = await transaction.save(gridMotherFactory('motherboard', motherFMDPremium));
+      // const FMDPremiumModePC = await transaction.save(gridMotherFactory('pc', motherFMDPremium));
 
-      await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'cpu', '87 / 113', '39 / 75'));
-      await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'cooler', '80 / 121', '29 / 85'));
-      await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'm2', '69 / 110', '132 / 151'));
-      await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
-      await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
-      await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'ram', '133/137', '17/99', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
-      await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'cpu', '87 / 113', '39 / 75'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'cooler', '80 / 121', '29 / 85'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'm2', '69 / 110', '132 / 151'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'ram', '133/137', '17/99', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
 
-      await transaction.save(pieceGridFactory(FMDPremiumModePC, 'cpu', '63 / 97', '39 / 75'));
-      await transaction.save(pieceGridFactory(FMDPremiumModePC, 'cooler', '51 / 107', '27 / 85'));
-      await transaction.save(pieceGridFactory(FMDPremiumModePC, 'm2', '37/ 85', '133 / 150'));
-      await transaction.save(pieceGridFactory(FMDPremiumModePC, 'pciExpress1', '32 / 89', '184 / 190'));
-      await transaction.save(pieceGridFactory(FMDPremiumModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
-      await transaction.save(pieceGridFactory(FMDPremiumModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDPremiumModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
-      await transaction.save(pieceGridFactory(FMDPremiumModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDPremiumModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModePC, 'cpu', '63 / 97', '39 / 75'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModePC, 'cooler', '51 / 107', '27 / 85'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModePC, 'm2', '37/ 85', '133 / 150'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModePC, 'pciExpress1', '32 / 89', '184 / 190'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FMDPremiumModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
 
-      const motherFDM153 = await transaction.save(motherFactory(
-        'FMD 153',
-        'motherBoard',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_VERDE_4_RAM-02_zs2gei.png',
-        'PMAE_VERDE_4_RAM-02_zs2gei',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_VERDE_4_RAM-02_zs2gei.png',
-        'PMAE_VERDE_4_RAM-02_zs2gei',
-        'AM3+',
-        '760G',
-        4,
-        32,
-        'DDR3',
-        80,
-        false
-      ));
+      // const motherFDM153 = await transaction.save(motherFactory(
+      //   'FMD 153',
+      //   'motherBoard',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_VERDE_4_RAM-02_zs2gei.png',
+      //   'PMAE_VERDE_4_RAM-02_zs2gei',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162673/DragAndDrop/motherBoard/PMAE_VERDE_4_RAM-02_zs2gei.png',
+      //   'PMAE_VERDE_4_RAM-02_zs2gei',
+      //   'AM3+',
+      //   '760G',
+      //   4,
+      //   32,
+      //   'DDR3',
+      //   80,
+      //   false
+      // ));
 
-      await transaction.save(pcieSocketFactory(motherFDM153, 'x16', 3));
-      await transaction.save(pcieSocketFactory(motherFDM153, 'x16', 2));
-      await transaction.save(pcieSocketFactory(motherFDM153, 'x1', 2));
+      // await transaction.save(pcieSocketFactory(motherFDM153, 'x16', 3));
+      // await transaction.save(pcieSocketFactory(motherFDM153, 'x16', 2));
+      // await transaction.save(pcieSocketFactory(motherFDM153, 'x1', 2));
 
-      await transaction.save(motherFrequencyFactory(motherFDM153, 1600));
-      await transaction.save(motherFrequencyFactory(motherFDM153, 2333));
+      // await transaction.save(motherFrequencyFactory(motherFDM153, 1600));
+      // await transaction.save(motherFrequencyFactory(motherFDM153, 2333));
 
-      const FDM153ModeMother = await transaction.save(gridMotherFactory('motherboard', motherFDM153));
-      const FDM153ModePC = await transaction.save(gridMotherFactory('pc', motherFDM153));
+      // const FDM153ModeMother = await transaction.save(gridMotherFactory('motherboard', motherFDM153));
+      // const FDM153ModePC = await transaction.save(gridMotherFactory('pc', motherFDM153));
 
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'cpu', '87 / 113', '39 / 75'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'cooler', '80 / 121', '29 / 85'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'm2', '69 / 110', '132 / 151'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '133/137', '17/99', 'ram_1'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '138 / 142', '17 / 99', 'ram_3'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '138 / 142', '17 / 99', 'ram_4'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_3'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_4'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'cpu', '87 / 113', '39 / 75'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'cooler', '80 / 121', '29 / 85'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'm2', '69 / 110', '132 / 151'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '133/137', '17/99', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '138 / 142', '17 / 99', 'ram_3'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '138 / 142', '17 / 99', 'ram_4'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_3'));
+      // await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_4'));
 
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'cpu', '63 / 97', '39 / 75'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'cooler', '51 / 107', '27 / 85'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'm2', '37/ 85', '133 / 150'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'pciExpress1', '32 / 89', '184 / 190'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '130 / 136', '17 / 97', 'ram_3'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '130 / 136', '17 / 97', 'ram_4'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_3'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_4'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'cpu', '63 / 97', '39 / 75'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'cooler', '51 / 107', '27 / 85'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'm2', '37/ 85', '133 / 150'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'pciExpress1', '32 / 89', '184 / 190'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '130 / 136', '17 / 97', 'ram_3'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '130 / 136', '17 / 97', 'ram_4'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_3'));
+      // await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_4'));
 
-      const cooler523 = await transaction.save(coolerFactory(
-        'Cooler 523',
-        'cooler',
-        2000,
-        35,
-        35,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614128996/DragAndDrop/cooler/cooler_dqjvtl.png',
-        'cooler_dqjvtl',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614128996/DragAndDrop/cooler/cooler_dqjvtl.png',
-        'cooler_dqjvtl'
-      ));
-      await transaction.save(coolerFrequencyFactory(cooler523, 'AM4'));
-      await transaction.save(coolerFrequencyFactory(cooler523, 'AM3+'));
-      await transaction.save(coolerFrequencyFactory(cooler523, 'LGA1151'));
-      await transaction.save(coolerFrequencyFactory(cooler523, 'LGA1150'));
-      await transaction.save(coolerFrequencyFactory(cooler523, 'LGA1200'));
+      // const cooler523 = await transaction.save(coolerFactory(
+      //   'Cooler 523',
+      //   'cooler',
+      //   2000,
+      //   35,
+      //   35,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614128996/DragAndDrop/cooler/cooler_dqjvtl.png',
+      //   'cooler_dqjvtl',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614128996/DragAndDrop/cooler/cooler_dqjvtl.png',
+      //   'cooler_dqjvtl'
+      // ));
+      // await transaction.save(coolerFrequencyFactory(cooler523, 'AM4'));
+      // await transaction.save(coolerFrequencyFactory(cooler523, 'AM3+'));
+      // await transaction.save(coolerFrequencyFactory(cooler523, 'LGA1151'));
+      // await transaction.save(coolerFrequencyFactory(cooler523, 'LGA1150'));
+      // await transaction.save(coolerFrequencyFactory(cooler523, 'LGA1200'));
 
-      const coolerGM = await transaction.save(coolerFactory(
-        'Cooler GM',
-        'cooler',
-        2000,
-        65,
-        45,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614128996/DragAndDrop/cooler/cooler_dqjvtl.png',
-        'cooler_dqjvtl',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614128996/DragAndDrop/cooler/cooler_dqjvtl.png',
-        'cooler_dqjvtl'
-      ));
-      await transaction.save(coolerFrequencyFactory(coolerGM, 'AM4'));
-      await transaction.save(coolerFrequencyFactory(coolerGM, 'LGA1151'));
-      await transaction.save(coolerFrequencyFactory(coolerGM, 'LGA1150'));
-      await transaction.save(coolerFrequencyFactory(coolerGM, 'LGA1200'));
+      // const coolerGM = await transaction.save(coolerFactory(
+      //   'Cooler GM',
+      //   'cooler',
+      //   2000,
+      //   65,
+      //   45,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614128996/DragAndDrop/cooler/cooler_dqjvtl.png',
+      //   'cooler_dqjvtl',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614128996/DragAndDrop/cooler/cooler_dqjvtl.png',
+      //   'cooler_dqjvtl'
+      // ));
+      // await transaction.save(coolerFrequencyFactory(coolerGM, 'AM4'));
+      // await transaction.save(coolerFrequencyFactory(coolerGM, 'LGA1151'));
+      // await transaction.save(coolerFrequencyFactory(coolerGM, 'LGA1150'));
+      // await transaction.save(coolerFrequencyFactory(coolerGM, 'LGA1200'));
 
-      const cpuPent = await transaction.save(cpuFactory(
-        'Cpu Pent',
-        'cpu',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'LGA1200',
-        'H410 Express',
-        4,
-        2,
-        4,
-        4,
-        4,
-        'Intel UHD Graphics 610',
-        2,
-        32,
-        58
-      ));
-      await transaction.save(cpuFrequencyFactory(cpuPent, 2666));
+      // const cpuPent = await transaction.save(cpuFactory(
+      //   'Cpu Pent',
+      //   'cpu',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'LGA1200',
+      //   'H410 Express',
+      //   4,
+      //   2,
+      //   4,
+      //   4,
+      //   4,
+      //   'Intel UHD Graphics 610',
+      //   2,
+      //   32,
+      //   58
+      // ));
+      // await transaction.save(cpuFrequencyFactory(cpuPent, 2666));
 
-      const cpuFMDOld = await transaction.save(cpuFactory(
-        'Cpu FMD old',
-        'cpu',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'AM3+',
-        '760G',
-        4,
-        4,
-        3.8,
-        4,
-        4,
-        'Vega',
-        4,
-        32,
-        95
-      ));
-      await transaction.save(cpuFrequencyFactory(cpuFMDOld, 2000));
-      await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1866));
-      await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1800));
-      await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1600));
-      await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1333));
-      await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1066));
+      // const cpuFMDOld = await transaction.save(cpuFactory(
+      //   'Cpu FMD old',
+      //   'cpu',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'AM3+',
+      //   '760G',
+      //   4,
+      //   4,
+      //   3.8,
+      //   4,
+      //   4,
+      //   'Vega',
+      //   4,
+      //   32,
+      //   95
+      // ));
+      // await transaction.save(cpuFrequencyFactory(cpuFMDOld, 2000));
+      // await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1866));
+      // await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1800));
+      // await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1600));
+      // await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1333));
+      // await transaction.save(cpuFrequencyFactory(cpuFMDOld, 1066));
 
-      const FMDGamer = await transaction.save(cpuFactory(
-        'Cpu FMD Gamer',
-        'cpu',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'AM4',
-        'A520',
-        12,
-        6,
-        3.7,
-        4.6,
-        35,
-        'Vega',
-        4,
-        128,
-        65
-      ));
-      await transaction.save(cpuFrequencyFactory(FMDGamer, 3200));
-      await transaction.save(cpuFrequencyFactory(FMDGamer, 3000));
-      await transaction.save(cpuFrequencyFactory(FMDGamer, 2800));
-      await transaction.save(cpuFrequencyFactory(FMDGamer, 2666));
-      await transaction.save(cpuFrequencyFactory(FMDGamer, 2400));
+      // const FMDGamer = await transaction.save(cpuFactory(
+      //   'Cpu FMD Gamer',
+      //   'cpu',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'AM4',
+      //   'A520',
+      //   12,
+      //   6,
+      //   3.7,
+      //   4.6,
+      //   35,
+      //   'Vega',
+      //   4,
+      //   128,
+      //   65
+      // ));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer, 3200));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer, 3000));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer, 2800));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer, 2666));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer, 2400));
 
-      const FMDPremium = await transaction.save(cpuFactory(
-        'Cpu FMD Gamer',
-        'cpu',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'AM4',
-        'A320',
-        12,
-        6,
-        3.2,
-        3.6,
-        19,
-        'Vega',
-        2,
-        32,
-        65
-      ));
-      await transaction.save(cpuFrequencyFactory(FMDPremium, 3200));
-      await transaction.save(cpuFrequencyFactory(FMDPremium, 2933));
-      await transaction.save(cpuFrequencyFactory(FMDPremium, 2800));
-      await transaction.save(cpuFrequencyFactory(FMDPremium, 2666));
-      await transaction.save(cpuFrequencyFactory(FMDPremium, 2400));
-      await transaction.save(cpuFrequencyFactory(FMDPremium, 2133));
+      // const FMDPremium = await transaction.save(cpuFactory(
+      //   'Cpu FMD Gamer',
+      //   'cpu',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'AM4',
+      //   'A320',
+      //   12,
+      //   6,
+      //   3.2,
+      //   3.6,
+      //   19,
+      //   'Vega',
+      //   2,
+      //   32,
+      //   65
+      // ));
+      // await transaction.save(cpuFrequencyFactory(FMDPremium, 3200));
+      // await transaction.save(cpuFrequencyFactory(FMDPremium, 2933));
+      // await transaction.save(cpuFrequencyFactory(FMDPremium, 2800));
+      // await transaction.save(cpuFrequencyFactory(FMDPremium, 2666));
+      // await transaction.save(cpuFrequencyFactory(FMDPremium, 2400));
+      // await transaction.save(cpuFrequencyFactory(FMDPremium, 2133));
 
-      const FMDGamer122 = await transaction.save(cpuFactory(
-        'Cpu FMD Gamer',
-        'cpu',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'AM4',
-        'A520',
-        16,
-        8,
-        3.6,
-        4.4,
-        32,
-        'Vega',
-        2,
-        64,
-        65
-      ));
-      await transaction.save(cpuFrequencyFactory(FMDGamer122, 3200));
-      await transaction.save(cpuFrequencyFactory(FMDGamer122, 3000));
-      await transaction.save(cpuFrequencyFactory(FMDGamer122, 2800));
-      await transaction.save(cpuFrequencyFactory(FMDGamer122, 2666));
-      await transaction.save(cpuFrequencyFactory(FMDGamer122, 2400));
+      // const FMDGamer122 = await transaction.save(cpuFactory(
+      //   'Cpu FMD Gamer',
+      //   'cpu',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'AM4',
+      //   'A520',
+      //   16,
+      //   8,
+      //   3.6,
+      //   4.4,
+      //   32,
+      //   'Vega',
+      //   2,
+      //   64,
+      //   65
+      // ));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer122, 3200));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer122, 3000));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer122, 2800));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer122, 2666));
+      // await transaction.save(cpuFrequencyFactory(FMDGamer122, 2400));
 
-      const premiumGame = await transaction.save(cpuFactory(
-        'Premium Game',
-        'cpu',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
-        'cpu1_qetftx',
-        'LGA1151',
-        'Z390',
-        16,
-        8,
-        3.6,
-        5,
-        16,
-        'Vega',
-        4,
-        128,
-        95
-      ));
-      await transaction.save(cpuFrequencyFactory(premiumGame, 3400));
-      await transaction.save(cpuFrequencyFactory(premiumGame, 3333));
-      await transaction.save(cpuFrequencyFactory(premiumGame, 3200));
-      await transaction.save(cpuFrequencyFactory(premiumGame, 3000));
-      await transaction.save(cpuFrequencyFactory(premiumGame, 2933));
-      await transaction.save(cpuFrequencyFactory(premiumGame, 2800));
-      await transaction.save(cpuFrequencyFactory(premiumGame, 2666));
-      await transaction.save(cpuFrequencyFactory(premiumGame, 2400));
+      // const premiumGame = await transaction.save(cpuFactory(
+      //   'Premium Game',
+      //   'cpu',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129003/DragAndDrop/cpu/cpu1_qetftx.png',
+      //   'cpu1_qetftx',
+      //   'LGA1151',
+      //   'Z390',
+      //   16,
+      //   8,
+      //   3.6,
+      //   5,
+      //   16,
+      //   'Vega',
+      //   4,
+      //   128,
+      //   95
+      // ));
+      // await transaction.save(cpuFrequencyFactory(premiumGame, 3400));
+      // await transaction.save(cpuFrequencyFactory(premiumGame, 3333));
+      // await transaction.save(cpuFrequencyFactory(premiumGame, 3200));
+      // await transaction.save(cpuFrequencyFactory(premiumGame, 3000));
+      // await transaction.save(cpuFrequencyFactory(premiumGame, 2933));
+      // await transaction.save(cpuFrequencyFactory(premiumGame, 2800));
+      // await transaction.save(cpuFrequencyFactory(premiumGame, 2666));
+      // await transaction.save(cpuFrequencyFactory(premiumGame, 2400));
 
-      await transaction.save(psuFactory(
-        'Fonte 550W',
-        'powerSupply',
-        550,
-        'Bivolt',
-        0,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupply_izjyph.png',
-        'powerSupply_izjyph',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupplyLateral_qmp3ia.png',
-        'powerSupplyLateral_qmp3ia'
-      ));
+      // await transaction.save(psuFactory(
+      //   'Fonte 550W',
+      //   'powerSupply',
+      //   550,
+      //   'Bivolt',
+      //   0,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupply_izjyph.png',
+      //   'powerSupply_izjyph',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupplyLateral_qmp3ia.png',
+      //   'powerSupplyLateral_qmp3ia'
+      // ));
 
-      await transaction.save(psuFactory(
-        'Fonte 650W',
-        'powerSupply',
-        650,
-        'Bivolt',
-        0,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupply_izjyph.png',
-        'powerSupply_izjyph',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupplyLateral_qmp3ia.png',
-        'powerSupplyLateral_qmp3ia'
-      ));
+      // await transaction.save(psuFactory(
+      //   'Fonte 650W',
+      //   'powerSupply',
+      //   650,
+      //   'Bivolt',
+      //   0,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupply_izjyph.png',
+      //   'powerSupply_izjyph',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupplyLateral_qmp3ia.png',
+      //   'powerSupplyLateral_qmp3ia'
+      // ));
 
-      await transaction.save(psuFactory(
-        'Fonte 750W',
-        'powerSupply',
-        750,
-        'Bivolt',
-        0,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupply_izjyph.png',
-        'powerSupply_izjyph',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupplyLateral_qmp3ia.png',
-        'powerSupplyLateral_qmp3ia'
-      ));
+      // await transaction.save(psuFactory(
+      //   'Fonte 750W',
+      //   'powerSupply',
+      //   750,
+      //   'Bivolt',
+      //   0,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupply_izjyph.png',
+      //   'powerSupply_izjyph',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupplyLateral_qmp3ia.png',
+      //   'powerSupplyLateral_qmp3ia'
+      // ));
 
-      await transaction.save(psuFactory(
-        'Fonte 850W',
-        'powerSupply',
-        850,
-        'Bivolt',
-        0,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupply_izjyph.png',
-        'powerSupply_izjyph',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupplyLateral_qmp3ia.png',
-        'powerSupplyLateral_qmp3ia'
-      ));
+      // await transaction.save(psuFactory(
+      //   'Fonte 850W',
+      //   'powerSupply',
+      //   850,
+      //   'Bivolt',
+      //   0,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupply_izjyph.png',
+      //   'powerSupply_izjyph',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129016/DragAndDrop/powerSupply/powerSupplyLateral_qmp3ia.png',
+      //   'powerSupplyLateral_qmp3ia'
+      // ));
 
-      await transaction.save(ramFactory(
-        'DDR3 - 1066',
-        'ram',
-        'DDR3',
-        1066,
-        8,
-        2,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
-        'ram2_a0x5nt',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
-        'ram2drop_lphsls'
-      ));
+      // await transaction.save(ramFactory(
+      //   'DDR3 - 1066',
+      //   'ram',
+      //   'DDR3',
+      //   1066,
+      //   8,
+      //   2,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+      //   'ram2_a0x5nt',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+      //   'ram2drop_lphsls'
+      // ));
 
-      await transaction.save(ramFactory(
-        'DDR3 - 1333',
-        'ram',
-        'DDR3',
-        1333,
-        8,
-        2,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
-        'ram2_a0x5nt',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
-        'ram2drop_lphsls'
-      ));
+      // await transaction.save(ramFactory(
+      //   'DDR3 - 1333',
+      //   'ram',
+      //   'DDR3',
+      //   1333,
+      //   8,
+      //   2,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+      //   'ram2_a0x5nt',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+      //   'ram2drop_lphsls'
+      // ));
 
-      await transaction.save(ramFactory(
-        'DDR4 - 2133',
-        'ram',
-        'DDR4',
-        2133,
-        8,
-        2,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
-        'ram2drop_lphsls',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
-        'ram1drop_ncwrga'
-      ));
+      // await transaction.save(ramFactory(
+      //   'DDR4 - 2133',
+      //   'ram',
+      //   'DDR4',
+      //   2133,
+      //   8,
+      //   2,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+      //   'ram2drop_lphsls',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+      //   'ram1drop_ncwrga'
+      // ));
 
-      await transaction.save(ramFactory(
-        'DDR4 - 2666',
-        'ram',
-        'DDR4',
-        2666,
-        8,
-        2,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
-        'ram2drop_lphsls',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
-        'ram1drop_ncwrga'
-      ));
+      // await transaction.save(ramFactory(
+      //   'DDR4 - 2666',
+      //   'ram',
+      //   'DDR4',
+      //   2666,
+      //   8,
+      //   2,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+      //   'ram2drop_lphsls',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+      //   'ram1drop_ncwrga'
+      // ));
 
-      await transaction.save(ramFactory(
-        'DDR4 - 3200',
-        'ram',
-        'DDR4',
-        3200,
-        8,
-        2,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
-        'ram2drop_lphsls',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
-        'ram1drop_ncwrga'
-      ));
-      await transaction.save(ramFactory(
-        'DDR4 - 2666',
-        'ram',
-        'DDR4',
-        2666,
-        8,
-        2,
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
-        'ram2drop_lphsls',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
-        'ram1drop_ncwrga'
-      ));
+      // await transaction.save(ramFactory(
+      //   'DDR4 - 3200',
+      //   'ram',
+      //   'DDR4',
+      //   3200,
+      //   8,
+      //   2,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+      //   'ram2drop_lphsls',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+      //   'ram1drop_ncwrga'
+      // ));
+      // await transaction.save(ramFactory(
+      //   'DDR4 - 2666',
+      //   'ram',
+      //   'DDR4',
+      //   2666,
+      //   8,
+      //   2,
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+      //   'ram2drop_lphsls',
+      //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+      //   'ram1drop_ncwrga'
+      // ));
     });
   } catch (err) {
     console.log(err);
