@@ -9,7 +9,7 @@
   "scripts": {
     "typeorm": "npx ts-node ./node_modules/typeorm/cli.js",
     "dev": "nodemon",
-    "dump": "NODE_ENV=dev ts-node ./tests/dump.ts",
+    "dump": "NODE_ENV=test ts-node ./tests/dump.ts",
     "test": "NODE_ENV=test jest --detectOpenHandles",
     "build": "tsc",
     "start": "node dist/index.js"
