@@ -92,7 +92,6 @@ class PartsHelper {
         parts = parts.map((element: Recorder) => this.recorderResponse(element));
         break;
     }
-
     return parts;
   }
 

@@ -62,7 +62,7 @@ class Cpu {
   @Column({ nullable: false })
   memorySupportAmountSlot: number;
 
-  @Column({ type: 'decimal', precision: 5, scale: 3, nullable: false })
+  @Column({ type: 'decimal', precision: 6, scale: 3, nullable: false })
   memorySizeSupport: number;
 
   @Column({ nullable: false })
