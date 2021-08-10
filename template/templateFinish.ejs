@@ -126,28 +126,28 @@
 
 		</ul>
 	<% } %>
+	<% if (errors.ram) { %>
+		<% if (errors.ram.length > 0 ) { %>
 
-	<% if (errors.ram.length > 0 ) { %>
+			<section class="titleBackgroundError">
+							<h1>Erro - Memória RAM<h1>
+			</section>
+			<ul>
+				<% let ramErrorNum = 1 %>
 
-		<section class="titleBackgroundError">
-						<h1>Erro - Memória RAM<h1>
-		</section>
-		<ul>
-			<% let ramErrorNum = 1 %>
+				<% errors.ram.forEach(function(ram, index){ %>
 
-			<% errors.ram.forEach(function(ram, index){ %>
+					<li> 
+						Erro <%= ramErrorNum %> = <%= ram.situation %> -
+						<%= ram.error %>
+					</li>
 
-				<li> 
-					Erro <%= ramErrorNum %> = <%= ram.situation %> -
-					<%= ram.error %>
-				</li>
+					<% ramErrorNum = ramErrorNum + 1 %>
 
-				<% ramErrorNum = ramErrorNum + 1 %>
-
-			<% }); %>
-			
-		</ul>
-		
+				<% }); %>
+				
+			</ul>
+		<% } %>
 	<% } %>
 
 	<% if (errors.powerSupply || errors.cablePowerSupply) { %>
