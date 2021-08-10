@@ -15,12 +15,12 @@ import startConnection from '../src/database/index';
 // import Cpu from '../src/database/entity/cpu.entity';
 // import CpuFrequency from '../src/database/entity/cpuFrequency.entity';
 
-// // import Pcie from '../src/database/entity/pcie.entity';
+// import Pcie from '../src/database/entity/pcie.entity';
 // import Psu from '../src/database/entity/psu.entity';
-// // import M2 from '../src/database/entity/m2.entity';
-// // import Rom from '../src/database/entity/rom.entity';
-// // import Recorder from '../src/database/entity/recorder.entity';
-// import Ram from '../src/database/entity/ram.entity';
+// import M2 from '../src/database/entity/m2.entity';
+// import Rom from '../src/database/entity/rom.entity';
+// import Recorder from '../src/database/entity/recorder.entity';
+import Ram from '../src/database/entity/ram.entity';
 // import FilterQuestions from '../src/database/entity/filterQuestions.entity';
 // import FilterResponse from '../src/database/entity/filterResponse.entity';
 
@@ -338,31 +338,31 @@ config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env' });
 //   recorder.dropImageId = dropImageId;
 //   return recorder;
 // };
-// const ramFactory = (
-//   name: string,
-//   type: string,
-//   memorySlotType: string,
-//   memoryFrequency: number,
-//   memorySize: number,
-//   TDP: number,
-//   image: string,
-//   imageId: string,
-//   dropImage: string,
-//   dropImageId: string
-// ): Ram => {
-//   const ram: Ram = new Ram();
-//   ram.name = name;
-//   ram.type = type;
-//   ram.memorySlotType = memorySlotType;
-//   ram.memoryFrequency = memoryFrequency;
-//   ram.memorySize = memorySize;
-//   ram.TDP = TDP;
-//   ram.image = image;
-//   ram.imageId = imageId;
-//   ram.dropImage = dropImage;
-//   ram.dropImageId = dropImageId;
-//   return ram;
-// };
+const ramFactory = (
+  name: string,
+  type: string,
+  memorySlotType: string,
+  memoryFrequency: number,
+  memorySize: number,
+  TDP: number,
+  image: string,
+  imageId: string,
+  dropImage: string,
+  dropImageId: string
+): Ram => {
+  const ram: Ram = new Ram();
+  ram.name = name;
+  ram.type = type;
+  ram.memorySlotType = memorySlotType;
+  ram.memoryFrequency = memoryFrequency;
+  ram.memorySize = memorySize;
+  ram.TDP = TDP;
+  ram.image = image;
+  ram.imageId = imageId;
+  ram.dropImage = dropImage;
+  ram.dropImageId = dropImageId;
+  return ram;
+};
 
 async function Dump () {
   try {
@@ -2222,6 +2222,355 @@ async function Dump () {
       //   'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
       //   'ram1drop_ncwrga'
       // ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 2666',
+        'ram',
+        'DDR4',
+        2666,
+        2,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+      await transaction.save(ramFactory(
+        'DDR4 - 2666',
+        'ram',
+        'DDR4',
+        2666,
+        4,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 2666',
+        'ram',
+        'DDR4',
+        2666,
+        16,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 2133',
+        'ram',
+        'DDR4',
+        2133,
+        2,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 2133',
+        'ram',
+        'DDR4',
+        2133,
+        4,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 2133',
+        'ram',
+        'DDR4',
+        2133,
+        16,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 3200',
+        'ram',
+        'DDR4',
+        3200,
+        2,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 3200',
+        'ram',
+        'DDR4',
+        3200,
+        4,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 3200',
+        'ram',
+        'DDR4',
+        3200,
+        16,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 3000',
+        'ram',
+        'DDR4',
+        3000,
+        2,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 3000',
+        'ram',
+        'DDR4',
+        3000,
+        4,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 3000',
+        'ram',
+        'DDR4',
+        3000,
+        16,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 2400',
+        'ram',
+        'DDR4',
+        2400,
+        2,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 2400',
+        'ram',
+        'DDR4',
+        2400,
+        4,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'DDR4 - 2400',
+        'ram',
+        'DDR4',
+        2400,
+        16,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1_leolkv.png',
+        'ram2drop_lphsls',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram1drop_ncwrga.png',
+        'ram1drop_ncwrga'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1066,
+        2,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1066,
+        4,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1066,
+        16,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1866,
+        2,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1866,
+        4,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1866,
+        16,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1600,
+        2,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1600,
+        4,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1600,
+        16,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1333,
+        2,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1333,
+        4,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
+
+      await transaction.save(ramFactory(
+        'Memória DDR3',
+        'ram',
+        'DDR3',
+        1333,
+        16,
+        2,
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129024/DragAndDrop/ram/ram2_a0x5nt.png',
+        'ram2_a0x5nt',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129023/DragAndDrop/ram/ram2drop_lphsls.png',
+        'ram2drop_lphsls'
+      ));
     });
   } catch (err) {
     console.log(err);
