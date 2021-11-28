@@ -73,6 +73,10 @@ Caso a pessoa feche o navegador não tem problema, quando acessar a página e o 
   * [yarn](https://yarnpkg.com/): Gerenciador de pacote;
   * [Nodemon](https://nodemon.io/) (ferramenta para ambiente de desenvolvimento): Uma maneira da API atualizar sozinha sem precisar reiniciar.
 
+<p align="justify">Caso deseje baixar o código fonte, para que apareça as telas é necessário clonar o front-end do projeto que pode ser acessada neste <a href="https://github.com/araujo21x/SM-Computadores">link</a> e fazer ela rodar, aqui é apenas a API.</p>
+
+
+
 <br> 
 
 ---
