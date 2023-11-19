@@ -6,9 +6,6 @@
   "repository": "git@github.com:araujo21x/API_SM_dragAndDrop.git",
   "author": "Lucas de Araujo <araujolucas97@outlook.com>",
   "license": "MIT",
-  "engines": {
-    "node": "14.15"
-  },
   "scripts": {
     "typeorm": "npx ts-node ./node_modules/typeorm/cli.js",
     "dev": "nodemon",
@@ -54,6 +51,7 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "nodemailer": "^6.6.3",
+    "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.30"
   }
