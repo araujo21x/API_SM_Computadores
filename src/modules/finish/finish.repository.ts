@@ -26,7 +26,7 @@ class FinishRepository {
       const dir: string = await helper.cratePDF(req, errorReport);
 
       if (req.body.evaluativeMode) {
-        await mailer.sendMail(emailMessage(dir, req.body.studentName));
+        await mailer.sendMail(emailMessage(dir, req.body.studentName, req.body.mailTeacher));
         errorReport = helper.generateError();
         sketchDir = await helper.cratePDF(req, errorReport);
       }

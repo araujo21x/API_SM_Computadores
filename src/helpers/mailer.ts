@@ -2,21 +2,19 @@ import nodemailer from 'nodemailer';
 import '../helpers/env';
 
 const transport = nodemailer.createTransport({
-  service: String(process.env.MAIL_SERVICE),
+  host: process.env.SMTP_HOST as string,
+  port: Number(process.env.SMTP_PORT),
+  secure: false,
   auth: {
-    type: 'OAuth2',
-    user: String(process.env.MAIL_USER),
-    clientId: String(process.env.MAIL_CLIENTID),
-    clientSecret: String(process.env.MAIL_SECRET),
-    refreshToken: String(process.env.MAIL_REFRESHTOKEN)
-  },
-  tls: { rejectUnauthorized: false }
+    user: process.env.SMTP_AUTH_USER as string,
+    pass: process.env.SMTP_AUTH_PASS as string
+  }
 });
 
-export function emailMessage (dir: string, studentName: string): any {
+export function emailMessage (dir: string, studentName: string, mailTeacher:string): any {
   return {
-    to: process.env.MAIL_TEACHER,
-    from: 'simulador@computacao.com',
+    to: mailTeacher,
+    from: process.env.EMAIL_SENDGRID,
     subject: `${studentName} - Simulação de manutenção`,
     text: `Olá, relatório do aluno(a) ${studentName}.`,
     attachments: [{

@@ -6,7 +6,7 @@ class FinishController {
   public async finish (req:Request, res:Response) {
     try {
       return await repository.finish(req, res);
-    } catch (err) {
+    } catch (err:any) {
       return responseError(res, err.message, 404);
     }
   }
