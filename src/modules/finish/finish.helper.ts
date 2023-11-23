@@ -23,7 +23,7 @@ class FinishHelper {
       const dir: string = path.resolve(__dirname,
         '..', '..', '..', 'tmp', 'pdf', `${generateName()}.pdf`
       );
-      console.log(dir);
+
       this.createTemplate(req.body, errorsReported).then(async (data: string) => {
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
@@ -33,7 +33,6 @@ class FinishHelper {
 
         resolve(dir);
       }).catch(err => {
-        console.log(err);
         reject(err);
       });
     });
