@@ -1,8 +1,7 @@
 import { Request } from 'express';
-import pdf from 'html-pdf';
 import path from 'path';
 import ejs from 'ejs';
-
+import puppeteer from 'puppeteer';
 import generateName from '../../helpers/generateNames';
 import { ResponseCode } from '../../helpers/response/responseCode';
 
@@ -22,16 +21,19 @@ class FinishHelper {
   public cratePDF (req: Request, errorsReported: any): Promise<string> {
     return new Promise((resolve: any, reject: any) => {
       const dir: string = path.resolve(__dirname,
-        '..', '..', 'tmp', 'pdf', `${generateName()}.pdf`
+        '..', '..', '..', 'tmp', 'pdf', `${generateName()}.pdf`
       );
+      console.log(dir);
+      this.createTemplate(req.body, errorsReported).then(async (data: string) => {
+        const browser = await puppeteer.launch({ headless: 'new' });
+        const page = await browser.newPage();
+        await page.setContent(data);
+        await page.pdf({ path: dir, format: 'A4' });
+        await browser.close();
 
-      this.createTemplate(req.body, errorsReported).then((data: string) => {
-        pdf.create(data, {})
-          .toFile(`${dir}`, (err) => {
-            if (err) reject(new Error('E_003_001'));
-            resolve(dir);
-          });
+        resolve(dir);
       }).catch(err => {
+        console.log(err);
         reject(err);
       });
     });

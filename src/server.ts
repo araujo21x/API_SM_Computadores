@@ -7,6 +7,8 @@ import compression from 'compression';
 import partsRouter from './modules/parts';
 import gridMotherRouter from './modules/gridMother';
 import finishRouter from './modules/finish';
+import fs from 'fs';
+import path from 'path';
 class App {
   public app: express.Application;
 
@@ -17,6 +19,7 @@ class App {
   }
 
   private config (): void {
+    this.configFolder();
     this.app.use(express.json());
     this.app.use(cors());
     this.app.use(helmet());
@@ -27,6 +30,14 @@ class App {
     this.app.use(partsRouter);
     this.app.use(gridMotherRouter);
     this.app.use(finishRouter);
+  }
+
+  private configFolder ():void {
+    const dir = path.resolve(__dirname, '..', 'tmp', 'pdf');
+
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
   }
 }
 
