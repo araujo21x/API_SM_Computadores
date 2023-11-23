@@ -50,7 +50,7 @@
     "mysql": "^2.18.1",
     "nodemailer": "^6.6.3",
     "pg": "^8.11.3",
-    "puppeteer": "^21.5.2",
+    "puppeteer": "13.7.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.30"
   }

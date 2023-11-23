@@ -25,7 +25,7 @@ class FinishHelper {
       );
       console.log(dir);
       this.createTemplate(req.body, errorsReported).then(async (data: string) => {
-        const browser = await puppeteer.launch({ headless: 'new' });
+        const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
         await page.setContent(data);
         await page.pdf({ path: dir, format: 'A4' });
