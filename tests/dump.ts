@@ -1352,9 +1352,9 @@ async function Dump () {
       const motherPremium = await transaction.save(motherFactory(
         'motherBoard Premium',
         'motherBoard',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129009/DragAndDrop/motherBoard/mother1_iumte0.png',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162662/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-02-01_d7gspm.png',
         'mother1_iumte0',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129009/DragAndDrop/motherBoard/mother1_iumte0.png',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162662/DragAndDrop/motherBoard/PMAE_CINZA_4_RAM-02-01_d7gspm.png',
         'mother1_iumte0',
         'LGA1200',
         'H410 Express',
@@ -1380,8 +1380,8 @@ async function Dump () {
       const premiumModeMother = await transaction.save(gridMotherFactory('motherboard', motherPremium));
       const premiumModePC = await transaction.save(gridMotherFactory('pc', motherPremium));
 
-      await transaction.save(pieceGridFactory(premiumModeMother, 'cpu', '88 / 113', '40 / 75'));
-      await transaction.save(pieceGridFactory(premiumModeMother, 'cooler', '81 / 120', '28 / 86'));
+      await transaction.save(pieceGridFactory(premiumModeMother, 'cpu', '87 / 113', '39 / 75'));
+      await transaction.save(pieceGridFactory(premiumModeMother, 'cooler', '80 / 121', '29 / 85'));
       await transaction.save(pieceGridFactory(premiumModeMother, 'm2', '69 / 110', '132 / 151'));
       await transaction.save(pieceGridFactory(premiumModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
       await transaction.save(pieceGridFactory(premiumModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
@@ -1390,22 +1390,22 @@ async function Dump () {
       await transaction.save(pieceGridFactory(premiumModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
       await transaction.save(pieceGridFactory(premiumModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
 
-      await transaction.save(pieceGridFactory(premiumModePC, 'cpu', '71 / 108', '41 / 75'));
-      await transaction.save(pieceGridFactory(premiumModePC, 'cooler', '61 / 119', '29 / 86'));
-      await transaction.save(pieceGridFactory(premiumModePC, 'm2', '44/ 103', '132 / 149'));
-      await transaction.save(pieceGridFactory(premiumModePC, 'pciExpress1', '37 / 99', '181 / 188'));
-      await transaction.save(pieceGridFactory(premiumModePC, 'pciExpress1Docked', '1 / 165', '177 / 190'));
-      await transaction.save(pieceGridFactory(premiumModePC, 'ram', '140 / 145', '18 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumModePC, 'ram', '147 / 152', '19 / 98', 'ram_2'));
-      await transaction.save(pieceGridFactory(premiumModePC, 'ramDocked', '141 / 144', '18 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumModePC, 'ramDocked', '148 / 151', '18 / 100', 'ram_2'));
+      await transaction.save(pieceGridFactory(premiumModePC, 'cpu', '63 / 97', '39 / 75'));
+      await transaction.save(pieceGridFactory(premiumModePC, 'cooler', '51 / 107', '27 / 85'));
+      await transaction.save(pieceGridFactory(premiumModePC, 'm2', '37/ 85', '133 / 150'));
+      await transaction.save(pieceGridFactory(premiumModePC, 'pciExpress1', '32 / 89', '184 / 190'));
+      await transaction.save(pieceGridFactory(premiumModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
+      await transaction.save(pieceGridFactory(premiumModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
+      await transaction.save(pieceGridFactory(premiumModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
+      await transaction.save(pieceGridFactory(premiumModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
+      await transaction.save(pieceGridFactory(premiumModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
 
       const motherSimple = await transaction.save(motherFactory(
         'motherBoard Simple',
         'motherBoard',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129009/DragAndDrop/motherBoard/mother2_snt4ra.png',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162662/DragAndDrop/motherBoard/PMAE_VERDE_4_RAM-01-02_p8cesj.png',
         'mother2_snt4ra',
-        'https://res.cloudinary.com/drbclvi9z/image/upload/v1614129009/DragAndDrop/motherBoard/mother2_snt4ra.png',
+        'https://res.cloudinary.com/drbclvi9z/image/upload/v1625162662/DragAndDrop/motherBoard/PMAE_VERDE_4_RAM-01-02_p8cesj.png',
         'mother2_snt4ra',
         'LGA1150',
         'Z87 Express',
@@ -1435,14 +1435,14 @@ async function Dump () {
       await transaction.save(pieceGridFactory(simpleModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
       await transaction.save(pieceGridFactory(simpleModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
 
-      await transaction.save(pieceGridFactory(simpleModePC, 'cpu', '71 / 108', '41 / 75'));
-      await transaction.save(pieceGridFactory(simpleModePC, 'cooler', '61 / 119', '29 / 86'));
-      await transaction.save(pieceGridFactory(simpleModePC, 'pciExpress1', '37 / 99', '181 / 188'));
-      await transaction.save(pieceGridFactory(simpleModePC, 'pciExpress1Docked', '1 / 165', '177 / 190'));
-      await transaction.save(pieceGridFactory(simpleModePC, 'ram', '140 / 145', '18 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(simpleModePC, 'ram', '147 / 152', '19 / 98', 'ram_2'));
-      await transaction.save(pieceGridFactory(simpleModePC, 'ramDocked', '141 / 144', '18 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(simpleModePC, 'ramDocked', '148 / 151', '18 / 100', 'ram_2'));
+      await transaction.save(pieceGridFactory(simpleModePC, 'cpu', '63 / 97', '39 / 75'));
+      await transaction.save(pieceGridFactory(simpleModePC, 'cooler', '51 / 107', '27 / 85'));
+      await transaction.save(pieceGridFactory(simpleModePC, 'pciExpress1', '32 / 89', '184 / 190'));
+      await transaction.save(pieceGridFactory(simpleModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
+      await transaction.save(pieceGridFactory(simpleModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
+      await transaction.save(pieceGridFactory(simpleModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
+      await transaction.save(pieceGridFactory(simpleModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
+      await transaction.save(pieceGridFactory(simpleModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
 
       const coolerPremium = await transaction.save(coolerFactory(
         'Cooler Premium',
@@ -1713,13 +1713,13 @@ async function Dump () {
       await transaction.save(pieceGridFactory(premiumGameModeMother, 'm2', '69 / 110', '132 / 151'));
       await transaction.save(pieceGridFactory(premiumGameModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
       await transaction.save(pieceGridFactory(premiumGameModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '133/137', '17/99', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_3'));
+      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '123 / 127', '17 / 99', 'ram_1'));
+      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '128 / 132', '17 / 99', 'ram_2'));
+      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '133 / 137', '17 / 99', 'ram_3'));
       await transaction.save(pieceGridFactory(premiumGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_4'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_3'));
+      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '124 / 126', '15 / 100', 'ram_1'));
+      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '129 / 131', '15 / 100', 'ram_2'));
+      await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_3'));
       await transaction.save(pieceGridFactory(premiumGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_4'));
 
       await transaction.save(pieceGridFactory(premiumGameModePC, 'cpu', '63 / 97', '39 / 75'));
@@ -1727,13 +1727,13 @@ async function Dump () {
       await transaction.save(pieceGridFactory(premiumGameModePC, 'm2', '37/ 85', '133 / 150'));
       await transaction.save(pieceGridFactory(premiumGameModePC, 'pciExpress1', '32 / 89', '184 / 190'));
       await transaction.save(pieceGridFactory(premiumGameModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_3'));
+      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '110 / 116', '17 / 97', 'ram_1'));
+      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '117 / 122', '17 / 97', 'ram_2'));
+      await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '123 / 129', '17 / 97', 'ram_3'));
       await transaction.save(pieceGridFactory(premiumGameModePC, 'ram', '130 / 136', '17 / 97', 'ram_4'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_3'));
+      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '112 / 114', '15 / 100', 'ram_1'));
+      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '119 / 121', '15 / 100', 'ram_2'));
+      await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_3'));
       await transaction.save(pieceGridFactory(premiumGameModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_4'));
 
       // FDMGame
@@ -1784,13 +1784,13 @@ async function Dump () {
       await transaction.save(pieceGridFactory(FMDGameModeMother, 'm2', '69 / 110', '132 / 151'));
       await transaction.save(pieceGridFactory(FMDGameModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
       await transaction.save(pieceGridFactory(FMDGameModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '133/137', '17/99', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_3'));
+      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '123/127', '17/99', 'ram_1'));
+      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '128 / 132', '17 / 99', 'ram_2'));
+      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '133 / 137', '17 / 99', 'ram_3'));
       await transaction.save(pieceGridFactory(FMDGameModeMother, 'ram', '138 / 142', '17 / 99', 'ram_4'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_3'));
+      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '124 / 126', '15 / 100', 'ram_1'));
+      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '129 / 131', '15 / 100', 'ram_2'));
+      await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_3'));
       await transaction.save(pieceGridFactory(FMDGameModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_4'));
 
       await transaction.save(pieceGridFactory(FMDGameModePC, 'cpu', '63 / 97', '39 / 75'));
@@ -1891,13 +1891,13 @@ async function Dump () {
       await transaction.save(pieceGridFactory(FDM153ModeMother, 'm2', '69 / 110', '132 / 151'));
       await transaction.save(pieceGridFactory(FDM153ModeMother, 'pciExpress1', '65 / 106', '184 / 191'));
       await transaction.save(pieceGridFactory(FDM153ModeMother, 'pciExpress1Docked', '41 / 150', '178 / 194'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '133/137', '17/99', 'ram_1'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '138 / 142', '17 / 99', 'ram_2'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '138 / 142', '17 / 99', 'ram_3'));
+      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '123/127', '17/99', 'ram_1'));
+      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '128 / 132', '17 / 99', 'ram_2'));
+      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '133 / 137', '17 / 99', 'ram_3'));
       await transaction.save(pieceGridFactory(FDM153ModeMother, 'ram', '138 / 142', '17 / 99', 'ram_4'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_3'));
+      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '124 / 126', '15 / 100', 'ram_1'));
+      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '129 / 131', '15 / 100', 'ram_2'));
+      await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '134 / 136', '15 / 100', 'ram_3'));
       await transaction.save(pieceGridFactory(FDM153ModeMother, 'ramDocked', '139 / 141', '15 / 100', 'ram_4'));
 
       await transaction.save(pieceGridFactory(FDM153ModePC, 'cpu', '63 / 97', '39 / 75'));
@@ -1905,13 +1905,13 @@ async function Dump () {
       await transaction.save(pieceGridFactory(FDM153ModePC, 'm2', '37/ 85', '133 / 150'));
       await transaction.save(pieceGridFactory(FDM153ModePC, 'pciExpress1', '32 / 89', '184 / 190'));
       await transaction.save(pieceGridFactory(FDM153ModePC, 'pciExpress1Docked', '1 / 145', '177 / 190'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '123 / 129', '17 / 97', 'ram_1'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '130 / 136', '17 / 97', 'ram_2'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '130 / 136', '17 / 97', 'ram_3'));
+      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '110 / 116', '17 / 97', 'ram_1'));
+      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '117 / 122', '17 / 97', 'ram_2'));
+      await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '123 / 129', '17 / 97', 'ram_3'));
       await transaction.save(pieceGridFactory(FDM153ModePC, 'ram', '130 / 136', '17 / 97', 'ram_4'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_1'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_2'));
-      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_3'));
+      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '112 / 114', '15 / 100', 'ram_1'));
+      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '119 / 121', '15 / 100', 'ram_2'));
+      await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '125 / 127', '15 / 100', 'ram_3'));
       await transaction.save(pieceGridFactory(FDM153ModePC, 'ramDocked', '132 / 134', '15 / 100', 'ram_4'));
 
       const cooler523 = await transaction.save(coolerFactory(
